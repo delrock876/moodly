@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,24 +10,23 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="./assets/css/style.css">
-  <link rel="stylesheet" href="songlist.html">
 
 </head>
 
 <body>
-  
+
   <nav>
     <div class="nav-wrapper">
       <div class="container">
-      <a href="#" class="sidenav-trigger" data-target="slide-out"><i class="material-icons">menu</i></a>
-      <a href="#" class="brand-logo">Moodly</a>
-      <ul class="right hide-on-med-and-down">
-        <li class="#"><a href="#"><i class="material-icons">search</i></a></li>
-        <li><a href="#"><i class="material-icons">view_module</i></a></li>
-        <li><a href="#"><i class="material-icons">refresh</i></a></li>
-        <li><a href="#"><i class="material-icons">more_vert</i></a></li>
-      </ul>
-    </div>
+        <a href="#" class="sidenav-trigger" data-target="slide-out"><i class="material-icons">menu</i></a>
+        <a href="#" class="brand-logo">Moodly</a>
+        <ul class="right hide-on-med-and-down">
+          <li class="#"><a href="#"><i class="material-icons">search</i></a></li>
+          <li><a href="#"><i class="material-icons">view_module</i></a></li>
+          <li><a href="#"><i class="material-icons">refresh</i></a></li>
+          <li><a href="#"><i class="material-icons">more_vert</i></a></li>
+        </ul>
+      </div>
     </div>
   </nav>
   <ul class="sidenav" id="slide-out">
@@ -35,46 +35,73 @@
     <li><a href="#"><i class="material-icons">refresh</i></a></li>
     <li><a href="#"><i class="material-icons">more_vert</i></a></li>
   </ul>
-  
-  <div class="row">
-      <div class="col s6">
-          <a href="songlist.html"><img id="adventure" src="#"></a>
-          Adventure
-      </div>
-      <div class="col s6">
-          <a href="songlist.html"><img id="agro" src="#"></a>
-          Agro
-      </div>
-  </div>
-  <div class="row">
-      <div class="col s6">
-          <a href="songlist.html"><img id="chill" src="#"></a>
-          Chill
-      </div>
-      <div class="col s6">
-          <a href="songlist.html"><img id="gloom" src="#"></a>
-          Gloom
-      </div>
-  </div>
-  <div class="row">
-      <div class="col s6">
-          <a href="songlist.html"><img id="amped" src="#"></a>
-          Amped
-      </div>
-      <div class="col s6">
-          <a href="songlist.html"><img id="soph" src="#"></a>
-          Sophisticated
-      </div>
-  </div>
-  
 
-    
-  
-  
+
+
+  <div id="main-container">
+    <div class="row">
+      <div class="col s6">
+        <div class="card">
+          <div class="card-image">
+            <a href="#"><img src="./assets/images/adventure-v1.jpg" class="moodBtn" id="indie"></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col s6">
+        <div class="card">
+          <div class="card-image">
+            <a href="#"><img src="./assets/images/aggro-v1.jpg" class="moodBtn" id="hardcore"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s6">
+        <div class="card">
+          <div class="card-image">
+            <a href="#"><img src="./assets/images/chill-v1.jpg" class="moodBtn" id="chill"></a>
+          </div>
+        </div>
+      </div>
+      <div class="col s6">
+        <div class="card">
+
+
+          <div class="card-image">
+            <a href="#"><img src="./assets/images/gloom-v1.jpg" class="moodBtn" id="emo"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s6">
+        <div class="card">
+          <div class="card-image">
+            <a href="#"><img src="./assets/images/amped-v1.jpg" class="moodBtn" id="edm"></a>
+          </div>
+        </div>
+      </div>
+      <div class="col s6">
+        <div class="card">
+          <div class="card-image">
+            <a href="#"><img class="moodBtn" id="classical" src="./assets/images/classy-v1.jpg"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="./assets/javascript/app.js"></script>
   <script>const slideMenu = document.querySelectorAll('.sidenav');
     M.Sidenav.init(slideMenu, {});
   </script>
 </body>
+
 </html>
