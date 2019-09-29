@@ -52,6 +52,20 @@ document.addEventListener(`click`, event => {
     }
     
   })
-  
-  
+
+// event listener for getting lyrics once you click on a song
+document.addEventListener(`click`, () => {
+  if(event.target.className === `collection-item`){
+  console.log(event.target.textContent)
+  let songTitle = event.target.textContent
+  fetch(`https://api.lyrics.ovh/v1/${artistName}/${songTitle}`)
+  .then(r => r.json())
+  .then(data => {
+    console.log(data)
+  })
+  .catch(e => {
+    console.log(e)
+  })
+ }
+})
 
