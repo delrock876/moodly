@@ -5,11 +5,36 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>Search</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
 <body>
-  <h1>Search for Song</h1>
+<nav>
+  <div class="nav-wrapper">
+    <div class="container">
+      <a href="#" class="sidenav-trigger" data-target="slide-out"><i class="material-icons">menu</i></a>
+      <a href="index.html" class="brand-logo">Moodly</a>
+      <ul class="right hide-on-med-and-down">
+        <li class="#"><a href="search.html"><i class="material-icons">search</i></a></li>
+        <li><a href="#"><i class="material-icons">view_module</i></a></li>
+        <li><a href="#"><i class="material-icons">refresh</i></a></li>
+        <li><a href="#"><i class="material-icons">more_vert</i></a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<ul class="sidenav" id="slide-out">
+  <li><a href="search.html"><i class="material-icons">search</i></a></li>
+  <li><a href="#"><i class="material-icons">view_module</i></a></li>
+  <li><a href="#"><i class="material-icons">refresh</i></a></li>
+  <li><a href="#"><i class="material-icons">more_vert</i></a></li>
+</ul>
+
+
+  <h3>Search for Song</h3>
   <form>
     Artist: <br>
     <input type="text" id="yourartist"><br>
@@ -46,7 +71,11 @@
         .catch(e => console.log(e))
     })
   </script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="./assets/javascript/app.js"></script>
+<script>const slideMenu = document.querySelectorAll('.sidenav');
+  M.Sidenav.init(slideMenu, {});
+</script>
 </body>
 
 </html>

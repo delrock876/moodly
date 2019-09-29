@@ -8,21 +8,25 @@ const randomList = () =>{
   newList.push(newsong)
   }
 }
-// let renderList = () => {
-//   let trackList = document.createElement(`ul`)
-//   trackList.innerHTML = `
-//   <li class="collection-item avatar">
-//       <img src="#" alt="kev" class="circle">
-//       <span class="title">Title</span>
-//       <p>First Line <br>
-//          Second Line
-//       </p>
-//       <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-//     </li>
-//   `
-//   document.getElementById(`main-container`).append(trackList)
+let renderList = () => {
+  let trackList = document.createElement(`ul`)
+  trackList.innerHTML = `
+  <div class="collection">
+        <a href="#!" class="collection-item">${newList[0]}</a>
+        <a href="#!" class="collection-item">${newList[1]}</a>
+        <a href="#!" class="collection-item">${newList[2]}</a>
+        <a href="#!" class="collection-item">${newList[3]}</a>
+        <a href="#!" class="collection-item">${newList[4]}</a>
+        <a href="#!" class="collection-item">${newList[5]}</a>
+        <a href="#!" class="collection-item">${newList[6]}</a>
+        <a href="#!" class="collection-item">${newList[7]}</a>
+        <a href="#!" class="collection-item">${newList[8]}</a>
+        <a href="#!" class="collection-item">${newList[9]}</a>
+      </div>
+  `
+  document.getElementById(`main-container`).append(trackList)
 
-// }
+}
 
 document.addEventListener(`click`, event => {
   if (event.target.className === `moodBtn`) {
@@ -39,11 +43,12 @@ document.addEventListener(`click`, event => {
         console.log(list)
         randomList()
         console.log(newList)
+        renderList()
       })
       .catch(e => {
         console.log(e)
       })
-      // renderList()
+      
     }
     
   })
