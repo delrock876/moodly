@@ -1,45 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
 </head>
+
 <body>
   <h1>Search for Song</h1>
-<form>
-  Artist: <br>
-  <input type="text" id="yourartist"><br>
-  Title: <br>
-  <input id="yourtitle" type="text">
-  <button id="submit">Submit</button>
-</form>
+  <form>
+    Artist: <br>
+    <input type="text" id="yourartist"><br>
+    Title: <br>
+    <input id="yourtitle" type="text">
+    <button id="submit">Submit</button>
+  </form>
 
-<div id="genInfo"></div>
+  <div id="genInfo">
+    <img id='albImg' src="" alt="">
+    <p id="title"></p>
+    <p id="artist"></p>
+    <p id="album"></p>
 
-<script>
+  </div>
 
-  document.getElementById('submit').addEventListener('click', event => {
-    event.preventDefault()
-    let artist = document.getElementById('yourartist').value
-    let song = document.getElementById('yourtitle').value
-    let url = `https://quinton-spotify-api.herokuapp.com/search?t=track&q=${song}`
+  <script>
 
-    fetch(url)
-      .then(r => r.json())
-      .then(info => {
-        console.log(info[0])
-        console.log(`
-        Artist: ${info[0].artists[0].name}
-        Title: ${song}
-        Album Name: ${info[0].album.name}
-        Alb img src: ${info[0].album.images[1].url}`)
-      })
-      .catch(e => console.log(e))
+    document.getElementById('submit').addEventListener('click', event => {
+      event.preventDefault()
+      let artist = document.getElementById('yourartist').value
+      let song = document.getElementById('yourtitle').value
+      let url = `https://quinton-spotify-api.herokuapp.com/search?t=track&q=${song}`
 
-  })
-</script>
-  
+      fetch(url)
+        .then(r => r.json())
+        .then(info => {
+          // console.log(info[0])
+          document.getElementById('albImg').src = `${info[0].album.images[1].url}`
+          document.getElementById('artist').innerHTML = `Artist: ${info[0].artists[0].name}`
+          document.getElementById('title').innerHTML = `Song Title: ${song}`
+          document.getElementById('album').innerHTML = `Album Name: ${info[0].album.name}`
+        })
+        .catch(e => console.log(e))
+    })
+  </script>
+
 </body>
+
 </html>
