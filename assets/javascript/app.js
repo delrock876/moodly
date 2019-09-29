@@ -1,6 +1,22 @@
 let mood = ``
 let list = []
 
+let renderList = () => {
+  let trackList = document.createElement(`ul`)
+  trackList.innerHTML = `
+  <li class="collection-item avatar">
+      <img src="#" alt="kev" class="circle">
+      <span class="title">Title</span>
+      <p>First Line <br>
+         Second Line
+      </p>
+      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+    </li>
+  `
+  document.getElementById(`main-container`).append(trackList)
+
+}
+
 document.addEventListener(`click`, event => {
   if (event.target.className === `moodBtn`) {
     document.getElementById('main-container').innerHTML = ``
@@ -15,7 +31,12 @@ document.addEventListener(`click`, event => {
         })
         console.log(list)
       })
+      .catch(e => {
+        console.log(e)
+      })
+      renderList()
     }
+
   })
   
 
