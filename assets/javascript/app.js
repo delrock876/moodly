@@ -13,16 +13,16 @@ let renderList =_=> {
   let trackList = document.createElement(`ul`)
   trackList.innerHTML = `
   <div class="collection">
-        <a href="#info" class="collection-item modal-trigger">${newList[0]}</a>
-        <a href="#info" class="collection-item modal-trigger">${newList[1]}</a>
-        <a href="#info" class="collection-item modal-trigger">${newList[2]}</a>
-        <a href="#info" class="collection-item modal-trigger">${newList[3]}</a>
-        <a href="#info" class="collection-item modal-trigger">${newList[4]}</a>
-        <a href="#info" class="collection-item modal-trigger">${newList[5]}</a>
-        <a href="#info" class="collection-item modal-trigger">${newList[6]}</a>
-        <a href="#info" class="collection-item modal-trigger">${newList[7]}</a>
-        <a href="#info" class="collection-item modal-trigger">${newList[8]}</a>
-        <a href="#info" class="collection-item modal-trigger">${newList[9]}</a>
+        <a href="#info" class="collection-item modal-trigger"><p>Artist: ${newList[0].name}</p><p>Song: ${newList[0].song}</p></a>
+        <a href="#info" class="collection-item modal-trigger"><p>Artist: ${newList[1].name}</p><p>Song: ${newList[1].song}</p></a>
+        <a href="#info" class="collection-item modal-trigger"><p>Artist: ${newList[2].name}</p><p>Song: ${newList[2].song}</p></a>
+        <a href="#info" class="collection-item modal-trigger"><p>Artist: ${newList[3].name}</p><p>Song: ${newList[3].song}</p></a>
+        <a href="#info" class="collection-item modal-trigger"><p>Artist: ${newList[4].name}</p><p>Song: ${newList[4].song}</p></a>
+        <a href="#info" class="collection-item modal-trigger"><p>Artist: ${newList[5].name}</p><p>Song: ${newList[5].song}</p></a>
+        <a href="#info" class="collection-item modal-trigger"><p>Artist: ${newList[6].name}</p><p>Song: ${newList[6].song}</p></a>
+        <a href="#info" class="collection-item modal-trigger"><p>Artist: ${newList[7].name}</p><p>Song: ${newList[7].song}</p></a>
+        <a href="#info" class="collection-item modal-trigger"><p>Artist: ${newList[8].name}</p><p>Song: ${newList[8].song}</p></a>
+        <a href="#info" class="collection-item modal-trigger"><p>Artist: ${newList[9].name}</p><p>Song: ${newList[9].song}</p></a>
       </div>
   `
   document.getElementById(`main-container`).append(trackList)
@@ -43,10 +43,11 @@ document.addEventListener(`click`, event => {
         }
         console.log(list)
         randomList()
+        renderList()
       })
       .catch(e => console.log(e))
       
-      renderList()
+      
     }
   })
   
