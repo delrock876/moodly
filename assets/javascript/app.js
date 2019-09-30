@@ -12,16 +12,16 @@ let renderList = () => {
   let trackList = document.createElement(`ul`)
   trackList.innerHTML = `
   <div class="collection">
-        <a href="#!" class="collection-item">${newList[0]}</a>
-        <a href="#!" class="collection-item">${newList[1]}</a>
-        <a href="#!" class="collection-item">${newList[2]}</a>
-        <a href="#!" class="collection-item">${newList[3]}</a>
-        <a href="#!" class="collection-item">${newList[4]}</a>
-        <a href="#!" class="collection-item">${newList[5]}</a>
-        <a href="#!" class="collection-item">${newList[6]}</a>
-        <a href="#!" class="collection-item">${newList[7]}</a>
-        <a href="#!" class="collection-item">${newList[8]}</a>
-        <a href="#!" class="collection-item">${newList[9]}</a>
+        <a href="#info" class="collection-item modal-trigger">${newList[0]}</a>
+        <a href="#info" class="collection-item modal-trigger">${newList[1]}</a>
+        <a href="#info" class="collection-item modal-trigger">${newList[2]}</a>
+        <a href="#info" class="collection-item modal-trigger">${newList[3]}</a>
+        <a href="#info" class="collection-item modal-trigger">${newList[4]}</a>
+        <a href="#info" class="collection-item modal-trigger">${newList[5]}</a>
+        <a href="#info" class="collection-item modal-trigger">${newList[6]}</a>
+        <a href="#info" class="collection-item modal-trigger">${newList[7]}</a>
+        <a href="#info" class="collection-item modal-trigger">${newList[8]}</a>
+        <a href="#info" class="collection-item modal-trigger">${newList[9]}</a>
       </div>
   `
   document.getElementById(`main-container`).append(trackList)
@@ -52,6 +52,23 @@ document.addEventListener(`click`, event => {
     }
     
   })
-  
-  
+
+// Initialize Modal
+M.Modal.init(document.querySelectorAll(`.modal`),{})
+
+// event listener for getting lyrics once you click on a song
+document.addEventListener(`click`, () => {
+  if(event.target.className === `collection-item modal-trigger`){
+    M.Modal.getInstance(document.getElementById(`info`)).open()
+      let songTitle = event.target.textContent
+        fetch(`https://api.lyrics.ovh/v1/${artistName}/${songTitle}`)
+        .then(r => r.json())
+        .then(data => {
+    console.log(data)
+  })
+  .catch(e => {
+    console.log(e)
+  })
+ }
+})
 
