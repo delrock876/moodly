@@ -2,13 +2,14 @@ let mood = ``
 let list = []
 let newList = []
 
-const randomList = () =>{
-  for(let i=0; i<10; i++){
-  let newsong = list[Math.floor(Math.random() * list.length)]
-  newList.push(newsong)
+const randomList = _ => {
+  for (let i = 0; i < 10; i++) {
+    let newsong = list[Math.floor(Math.random() * list.length)]
+    newList.push(newsong)
   }
+  console.log(newList)
 }
-let renderList = () => {
+let renderList =_=> {
   let trackList = document.createElement(`ul`)
   trackList.innerHTML = `
   <div class="collection">
@@ -28,47 +29,44 @@ let renderList = () => {
 
 }
 
+
 document.addEventListener(`click`, event => {
   if (event.target.className === `moodBtn`) {
     document.getElementById('main-container').innerHTML = ``
     mood = event.target.id
-    console.log(mood)
     let url = ` http://ws.audioscrobbler.com/2.0/?method=tag.getTopTracks&tag=${mood}&api_key=94d64342e57a2bf09615e32fc90ca58f&format=json`
     fetch(url)
       .then(r => r.json())
       .then(data => {
-        data.tracks.track.forEach(track => {
-          list.push(track.name)
-        })
+        for (let i = 0; i < 50; i++) {
+          list.push({ 'name': data.tracks.track[i].artist.name, 'song': data.tracks.track[i].name })
+        }
         console.log(list)
         randomList()
-        console.log(newList)
-        renderList()
+      })
+      .catch(e => console.log(e))
+      
+      renderList()
+    }
+  })
+  
+
+// Initialize Modal
+M.Modal.init(document.querySelectorAll(`.modal`), {})
+
+// event listener for getting lyrics once you click on a song
+document.addEventListener(`click`, () => {
+  if (event.target.className === `collection-item modal-trigger`) {
+    M.Modal.getInstance(document.getElementById(`info`)).open()
+    let songTitle = event.target.textContent
+    fetch(`https://api.lyrics.ovh/v1/${artistName}/${songTitle}`)
+      .then(r => r.json())
+      .then(data => {
+        console.log(data)
       })
       .catch(e => {
         console.log(e)
       })
-      
-    }
-    
-  })
-
-// Initialize Modal
-M.Modal.init(document.querySelectorAll(`.modal`),{})
-
-// event listener for getting lyrics once you click on a song
-document.addEventListener(`click`, () => {
-  if(event.target.className === `collection-item modal-trigger`){
-    M.Modal.getInstance(document.getElementById(`info`)).open()
-      let songTitle = event.target.textContent
-        fetch(`https://api.lyrics.ovh/v1/${artistName}/${songTitle}`)
-        .then(r => r.json())
-        .then(data => {
-    console.log(data)
-  })
-  .catch(e => {
-    console.log(e)
-  })
- }
+  }
 })
 
