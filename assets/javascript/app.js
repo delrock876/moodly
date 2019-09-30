@@ -9,24 +9,17 @@ const randomList = _ => {
   }
   console.log(newList)
 }
-let renderList =_=> {
-  let trackList = document.createElement(`ul`)
-  trackList.innerHTML = `
-  <div class="collection">
-        <a href="#info" class="collection-item modal-trigger"><p>Artist: <span id="A">${newList[0].name}</span></p><p>Song: ${newList[0].song}</p></a>
-        <a href="#info" class="collection-item modal-trigger"><p>Artist: ${newList[1].name}</p><p>Song: ${newList[1].song}</p></a>
-        <a href="#info" class="collection-item modal-trigger"><p>Artist: ${newList[2].name}</p><p>Song: ${newList[2].song}</p></a>
-        <a href="#info" class="collection-item modal-trigger"><p>Artist: ${newList[3].name}</p><p>Song: ${newList[3].song}</p></a>
-        <a href="#info" class="collection-item modal-trigger"><p>Artist: ${newList[4].name}</p><p>Song: ${newList[4].song}</p></a>
-        <a href="#info" class="collection-item modal-trigger"><p>Artist: ${newList[5].name}</p><p>Song: ${newList[5].song}</p></a>
-        <a href="#info" class="collection-item modal-trigger"><p>Artist: ${newList[6].name}</p><p>Song: ${newList[6].song}</p></a>
-        <a href="#info" class="collection-item modal-trigger"><p>Artist: ${newList[7].name}</p><p>Song: ${newList[7].song}</p></a>
-        <a href="#info" class="collection-item modal-trigger"><p>Artist: ${newList[8].name}</p><p>Song: ${newList[8].song}</p></a>
-        <a href="#info" class="collection-item modal-trigger"><p>Artist: ${newList[9].name}</p><p>Song: ${newList[9].song}</p></a>
-      </div>
-  `
-  document.getElementById(`main-container`).append(trackList)
 
+const renderList = _ => {
+  for (let i = 0; i < newList.length; i++) {
+    let trackList = document.createElement('ul')
+    trackList.innerHTML = `
+          <a href="#info" class="collection-item modal-trigger">Artist: <span data-artist="${newList[i].name}">${newList[i].name}</span>
+          <br>
+          Song: <span data-song="${newList[i].song}">${newList[i].song}</span></a>
+          `
+    document.getElementById('main-container').append(trackList)
+  }
 }
 
 
