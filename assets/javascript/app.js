@@ -13,7 +13,7 @@ let renderList =_=> {
   let trackList = document.createElement(`ul`)
   trackList.innerHTML = `
   <div class="collection">
-        <a href="#info" class="collection-item modal-trigger"><p>Artist: ${newList[0].name}</p><p>Song: ${newList[0].song}</p></a>
+        <a href="#info" class="collection-item modal-trigger"><p>Artist: <span id="A">${newList[0].name}</span></p><p>Song: ${newList[0].song}</p></a>
         <a href="#info" class="collection-item modal-trigger"><p>Artist: ${newList[1].name}</p><p>Song: ${newList[1].song}</p></a>
         <a href="#info" class="collection-item modal-trigger"><p>Artist: ${newList[2].name}</p><p>Song: ${newList[2].song}</p></a>
         <a href="#info" class="collection-item modal-trigger"><p>Artist: ${newList[3].name}</p><p>Song: ${newList[3].song}</p></a>
@@ -59,7 +59,6 @@ M.Modal.init(document.querySelectorAll(`.modal`), {})
 document.addEventListener(`click`, () => {
   if (event.target.className === `collection-item modal-trigger`) {
     M.Modal.getInstance(document.getElementById(`info`)).open()
-    let songTitle = event.target.textContent
     fetch(`https://api.lyrics.ovh/v1/${artistName}/${songTitle}`)
       .then(r => r.json())
       .then(data => {
@@ -70,4 +69,3 @@ document.addEventListener(`click`, () => {
       })
   }
 })
-
