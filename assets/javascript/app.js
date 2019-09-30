@@ -2,27 +2,28 @@ let mood = ``
 let list = []
 let newList = []
 
+//generates a new list of 10 songs from the array of  'list'
 const randomList = _ => {
   for (let i = 0; i < 10; i++) {
     let newsong = list[Math.floor(Math.random() * list.length)]
     newList.push(newsong)
   }
-  console.log(newList)
 }
 
+//renders 'newList' array of songs on page with dataset values
 const renderList = _ => {
   for (let i = 0; i < newList.length; i++) {
-    let trackList = document.createElement('ul')
+    let trackList = document.createElement(`ul`)
     trackList.innerHTML = `
           <a href="#info" class="collection-item modal-trigger">Artist: <span data-artist="${newList[i].name}">${newList[i].name}</span>
           <br>
           Song: <span data-song="${newList[i].song}">${newList[i].song}</span></a>
           `
-    document.getElementById('main-container').append(trackList)
+    document.getElementById(`main-container`).append(trackList)
   }
 }
 
-
+//onclick of moodBtn, a fetch request is made to grab 50 songs relating to that mood
 document.addEventListener(`click`, event => {
   if (event.target.className === `moodBtn`) {
     document.getElementById('main-container').innerHTML = ``
@@ -31,16 +32,14 @@ document.addEventListener(`click`, event => {
     fetch(url)
       .then(r => r.json())
       .then(data => {
+        //puts the artist and song title into an object and pushes that object into array 'list'
         for (let i = 0; i < 50; i++) {
           list.push({ 'name': data.tracks.track[i].artist.name, 'song': data.tracks.track[i].name })
         }
-        console.log(list)
         randomList()
         renderList()
       })
       .catch(e => console.log(e))
-      
-      
     }
   })
   
@@ -57,8 +56,6 @@ document.addEventListener(`click`, () => {
       .then(data => {
         console.log(data)
       })
-      .catch(e => {
-        console.log(e)
-      })
+      .catch(e => console.log(e))
   }
 })
