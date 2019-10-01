@@ -30,9 +30,19 @@ const renderList = _ => {
 //onclick of moodBtn, a fetch request is made to grab 50 songs relating to that mood
 document.addEventListener(`click`, event => {
   if (event.target.className === `moodBtn`) {
-    document.getElementById('main-container').innerHTML = ``
     mood = event.target.id
     let url = ` http://ws.audioscrobbler.com/2.0/?method=tag.getTopTracks&tag=${mood}&api_key=94d64342e57a2bf09615e32fc90ca58f&format=json`
+
+    //manufactured loading time
+      setTimeout(() => {
+        document.getElementById('main-container').innerHTML = `
+        <p id="loading">Generating Your Playlist</p>
+         <div class="progress">
+            <div class="indeterminate"></div>
+            </div>  
+        `
+      }, 100)
+
     fetch(url)
       .then(r => r.json())
       .then(data => {
@@ -41,7 +51,11 @@ document.addEventListener(`click`, event => {
           list.push({ 'name': data.tracks.track[i].artist.name, 'song': data.tracks.track[i].name })
         }
         randomList()
-        renderList()
+        setTimeout(() => {
+          document.getElementById('main-container').innerHTML = ``
+          renderList()
+          
+        },1500 );
       })
       .catch(e => console.log(e))
   }
@@ -70,3 +84,19 @@ document.addEventListener(`click`, event => {
       .catch(e => console.log(e))
   }
 })
+
+
+// setTimeout(function() => {
+//   document.getElementById('info').innerHTML = 
+//   `  <div class="preloader-wrapper active">
+//     <div class="spinner-layer spinner-red-only">
+//       <div class="circle-clipper left">
+//         <div class="circle"></div>
+//       </div><div class="gap-patch">
+//         <div class="circle"></div>
+//       </div><div class="circle-clipper right">
+//         <div class="circle"></div>
+//       </div>
+//     </div>
+//   </div>`
+// }, 2000);
