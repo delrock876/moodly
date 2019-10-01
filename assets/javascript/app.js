@@ -19,7 +19,7 @@ const renderList = _ => {
           Artist: <span>${newList[i].name}</span>
           <br>
           Song: <span>${newList[i].song}</span></a>
-          <a class= "btn moreInfo"
+          <a class= "btn-small moreInfo"
            data-artist="${newList[i].name}" 
            data-song="${newList[i].song}">More</a>
           `
@@ -53,7 +53,7 @@ M.Modal.init(document.querySelectorAll(`.modal`), {})
 
 // event listener for getting lyrics once you click "INFO" button
 document.addEventListener(`click`, event => {
-  if (event.target.className === `btn moreInfo`) {
+  if (event.target.className === `btn-small moreInfo`) {
     // opens modal
     M.Modal.getInstance(document.getElementById(`info`)).open()
     let artistName = event.target.dataset.artist
