@@ -54,7 +54,7 @@ document.addEventListener(`click`, event => {
         setTimeout(() => {
           document.getElementById('main-container').innerHTML = ``
           renderList()
-        },1500 );
+        },1200 );
       })
       .catch(e => console.log(e))
   }
@@ -74,6 +74,7 @@ document.addEventListener(`click`, event => {
     // displays artist & song in modal
     document.getElementById(`artistName`).innerHTML = artistName
     document.getElementById(`trackName`).innerHTML = songTitle
+
     // gets the lyrics
     fetch(`https://api.lyrics.ovh/v1/${artistName}/${songTitle}`)
       .then(r => r.json())
