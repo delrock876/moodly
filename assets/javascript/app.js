@@ -33,7 +33,7 @@ document.addEventListener(`click`, event => {
     mood = event.target.id
     let url = ` http://ws.audioscrobbler.com/2.0/?method=tag.getTopTracks&tag=${mood}&api_key=94d64342e57a2bf09615e32fc90ca58f&format=json`
 
-    //manufactured loading time
+    //loading animation
       setTimeout(() => {
         document.getElementById('main-container').innerHTML = `
         <p id="loading">Generating Your Playlist</p>
@@ -51,6 +51,7 @@ document.addEventListener(`click`, event => {
           list.push({ 'name': data.tracks.track[i].artist.name, 'song': data.tracks.track[i].name })
         }
         randomList()
+        //manufactured load time
         setTimeout(() => {
           document.getElementById('main-container').innerHTML = ``
           renderList()
