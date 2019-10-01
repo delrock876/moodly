@@ -15,12 +15,13 @@ const renderList = _ => {
   for (let i = 0; i < newList.length; i++) {
     let trackList = document.createElement(`ul`)
     trackList.innerHTML = `
-          <a href="#info" class="collection-item modal-trigger" 
-          data-artist="${newList[i].name}" 
-          data-song="${newList[i].song}">
+          <a href="#info" class="collection-item modal-trigger">
           Artist: <span>${newList[i].name}</span>
           <br>
           Song: <span>${newList[i].song}</span></a>
+          <a class= "btn moreInfo"
+           data-artist="${newList[i].name}" 
+           data-song="${newList[i].song}">More</a>
           `
     document.getElementById(`main-container`).append(trackList)
   }
@@ -52,8 +53,7 @@ M.Modal.init(document.querySelectorAll(`.modal`), {})
 
 // event listener for getting lyrics once you click "INFO" button
 document.addEventListener(`click`, event => {
-  if (event.target.className === `collection-item modal-trigger`) {
-    console.log(event.target.dataset.song)
+  if (event.target.className === `btn moreInfo`) {
     // opens modal
     M.Modal.getInstance(document.getElementById(`info`)).open()
     let artistName = event.target.dataset.artist
@@ -63,10 +63,10 @@ document.addEventListener(`click`, event => {
     document.getElementById(`trackName`).innerHTML = songTitle
     // gets the lyrics
     fetch(`https://api.lyrics.ovh/v1/${artistName}/${songTitle}`)
-    .then(r => r.json())
-    .then(data => {
-      document.getElementById(`lyric`).innerHTML = data.lyrics
-    })
-    .catch(e => console.log(e))
+      .then(r => r.json())
+      .then(data => {
+        document.getElementById(`lyric`).innerHTML = data.lyrics
+      })
+      .catch(e => console.log(e))
   }
 })
