@@ -1,3 +1,7 @@
 .tName{
     border-bottom: 2px solid black;
 }
+
+#main-container {
+    padding-top: 30px;
+}

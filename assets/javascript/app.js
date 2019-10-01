@@ -54,7 +54,6 @@ document.addEventListener(`click`, event => {
         setTimeout(() => {
           document.getElementById('main-container').innerHTML = ``
           renderList()
-          
         },1500 );
       })
       .catch(e => console.log(e))
