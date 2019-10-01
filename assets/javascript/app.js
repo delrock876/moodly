@@ -15,14 +15,14 @@ const renderList = _ => {
   for (let i = 0; i < newList.length; i++) {
     let trackList = document.createElement(`ul`)
     trackList.innerHTML = `
-          <a href="#info" class="collection-item modal-trigger">Artist: <span id="artist" data-artist="${newList[i].name}">${newList[i].name}</span>
+          <a href="#info" class="collection-item modal-trigger" 
+          data-artist="${newList[i].name}" 
+          data-song="${newList[i].song}">
+          Artist: <span>${newList[i].name}</span>
           <br>
-          Song: <span id="song" data-song="${newList[i].song}">${newList[i].song}</span></a>
-          <a href="#info" id="btn" class="waves-effect waves-light btn modal-trigger">INFO</a>
-
+          Song: <span>${newList[i].song}</span></a>
           `
     document.getElementById(`main-container`).append(trackList)
-    
   }
 }
 
@@ -43,29 +43,30 @@ document.addEventListener(`click`, event => {
         renderList()
       })
       .catch(e => console.log(e))
-    }
-  })
-  
+  }
+})
+
 
 // Initialize Modal
 M.Modal.init(document.querySelectorAll(`.modal`), {})
 
 // event listener for getting lyrics once you click "INFO" button
-document.addEventListener(`click`, () => {
-  if(event.target.id === `btn`){
+document.addEventListener(`click`, event => {
+  if (event.target.className === `collection-item modal-trigger`) {
+    console.log(event.target.dataset.song)
     // opens modal
     M.Modal.getInstance(document.getElementById(`info`)).open()
-      let artistName = document.getElementById(`artist`).dataset.artist
-      let songTitle = document.getElementById(`song`).dataset.song
-      // displays artist & song in modal
-        document.getElementById(`artistName`).textContent = artistName
-        document.getElementById(`trackName`).textContent = songTitle
-        // gets the lyrics
-          fetch(`https://api.lyrics.ovh/v1/${artistName}/${songTitle}`)
-          .then(r => r.json())
-          .then(data => {
-            document.getElementById(`lyric`).textContent = data.lyrics
-          })
-          .catch(e => console.log(e))
-      }
-  })
+    let artistName = event.target.dataset.artist
+    let songTitle = event.target.dataset.song
+    // displays artist & song in modal
+    document.getElementById(`artistName`).innerHTML = artistName
+    document.getElementById(`trackName`).innerHTML = songTitle
+    // gets the lyrics
+    fetch(`https://api.lyrics.ovh/v1/${artistName}/${songTitle}`)
+    .then(r => r.json())
+    .then(data => {
+      document.getElementById(`lyric`).innerHTML = data.lyrics
+    })
+    .catch(e => console.log(e))
+  }
+})
