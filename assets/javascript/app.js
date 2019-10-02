@@ -83,5 +83,20 @@ document.addEventListener(`click`, event => {
         document.getElementById(`lyric`).innerHTML = data.lyrics
       })
       .catch(e => console.log(e))
+
+    fetch(`https://quinton-spotify-api.herokuapp.com/search?t=track&q=${songTitle}`)
+      .then(r => r.json())
+      .then(data => {
+        let preview = data[0].preview_url
+        document.getElementById(`showPreview`).addEventListener(`click`, () => {
+        document.getElementById(`lyric`).innerHTML = `<div class="video-container">
+        <iframe width="853" height="480" src="${preview}" frameborder="0" allowfullscreen></iframe>
+      </div
+ `
+      })
+      // .catch(e => console.log(e))
+      
+    }) 
   }
 })
+
