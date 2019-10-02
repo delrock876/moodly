@@ -93,32 +93,32 @@ document.addEventListener(`click`, event => {
         let preview = data[0].preview_url
         // event listener for preview 
         document.getElementById(`showPreview`).addEventListener(`click`, () => {
-        document.getElementById(`modalInfo`).innerHTML = `<div class="video-container">
-        <iframe width="853" height="480" src="${preview}" frameborder="0" allowfullscreen></iframe>
-      </div>
+        document.getElementById(`modalInfo`).innerHTML = `
+        <div class="video-container">
+          <iframe width="853" height="480" src="${preview}" frameborder="0" allowfullscreen></iframe>
+        </div>
         `
         })
+        // event listner for info card
         document.getElementById(`showInfo`).addEventListener(`click`, () => {
           console.log(data)
-          console.log(data[0].album.name)
           document.getElementById(`modalInfo`).innerHTML = ` 
           <div class="row">
-          <div class="col s12 m7">
-            <div class="card">
-              <div class="card-image">
-                <img src=" ${data[0].album.images[0].url}">
-              </div>
+            <div class="col s12 m7">
+              <div class="card">
+                <div class="card-image">
+                  <img src=" ${data[0].album.images[0].url}">
+                </div>
               <div class="card-content">
                 <p>Album: ${data[0].album.name}</p>
-                <p>Released: ${data[0].album.release_date}
+                <p>Released: ${data[0].album.release_date}</p>
               </div>
             </div>
           </div>
         </div>`
       })
-      // .catch(e => console.log(e))
-      
     }) 
+    .catch(e => console.log(e))
   }
 })
 
