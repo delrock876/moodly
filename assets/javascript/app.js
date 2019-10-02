@@ -86,7 +86,7 @@ document.addEventListener(`click`, event => {
         })
       })
       .catch(e => console.log(e))
-    // fetch request tog et preview &info
+    // fetch request to get preview &info
     fetch(`https://quinton-spotify-api.herokuapp.com/search?t=track&q=${songTitle}`)
       .then(r => r.json())
       .then(data => {
