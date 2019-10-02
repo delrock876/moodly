@@ -81,18 +81,40 @@ document.addEventListener(`click`, event => {
       .then(r => r.json())
       .then(data => {
         document.getElementById(`modalInfo`).innerHTML = data.lyrics
+        document.getElementById(`showLyric`).addEventListener(`click`, () => {
+        document.getElementById(`modalInfo`).innerHTML = data.lyrics
+        })
       })
       .catch(e => console.log(e))
-
+    // fetch request tog et preview &info
     fetch(`https://quinton-spotify-api.herokuapp.com/search?t=track&q=${songTitle}`)
       .then(r => r.json())
       .then(data => {
         let preview = data[0].preview_url
+        // event listener for preview 
         document.getElementById(`showPreview`).addEventListener(`click`, () => {
         document.getElementById(`modalInfo`).innerHTML = `<div class="video-container">
         <iframe width="853" height="480" src="${preview}" frameborder="0" allowfullscreen></iframe>
-      </div
- `
+      </div>
+        `
+        })
+        document.getElementById(`showInfo`).addEventListener(`click`, () => {
+          console.log(data)
+          console.log(data[0].album.name)
+          document.getElementById(`modalInfo`).innerHTML = ` 
+          <div class="row">
+          <div class="col s12 m7">
+            <div class="card">
+              <div class="card-image">
+                <img src=" ${data[0].album.images[0].url}">
+              </div>
+              <div class="card-content">
+                <p>Album: ${data[0].album.name}</p>
+                <p>Released: ${data[0].album.release_date}
+              </div>
+            </div>
+          </div>
+        </div>`
       })
       // .catch(e => console.log(e))
       
