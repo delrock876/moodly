@@ -80,7 +80,7 @@ document.addEventListener(`click`, event => {
     fetch(`https://api.lyrics.ovh/v1/${artistName}/${songTitle}`)
       .then(r => r.json())
       .then(data => {
-        document.getElementById(`lyric`).innerHTML = data.lyrics
+        document.getElementById(`modalInfo`).innerHTML = data.lyrics
       })
       .catch(e => console.log(e))
 
@@ -89,7 +89,7 @@ document.addEventListener(`click`, event => {
       .then(data => {
         let preview = data[0].preview_url
         document.getElementById(`showPreview`).addEventListener(`click`, () => {
-        document.getElementById(`lyric`).innerHTML = `<div class="video-container">
+        document.getElementById(`modalInfo`).innerHTML = `<div class="video-container">
         <iframe width="853" height="480" src="${preview}" frameborder="0" allowfullscreen></iframe>
       </div
  `
