@@ -3,13 +3,29 @@
 }
 
 #main-container {
-    padding-top: 30px;
+    padding-top: 60px;
 }
 
+.col s6{
+    padding-left: 20px;
+    padding-right: 20px;
+}
 .nav-wrapper {
     background: #a4b8c1;
 }
 
+nav .brand-logo{
+    font-size: 50px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+}
+
 h3 {
     color: #828f99;
+}
+
+@media only screen and (max-width: 400px){
+nav .brand-logo{
+    font-size: 30px;
+}
 }
