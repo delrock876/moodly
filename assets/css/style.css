@@ -1,17 +1,24 @@
 .tName{
     border-bottom: 2px solid black;
 }
+.collection-item{
+    color: #828f99;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+}
 
+#submit{
+background-color: #78909c;
+}
+ul{
+    padding-left: 20px !important;
+}
 #main-container {
-    padding-top: 60px;
+    padding-top: 40px;
 }
 
-.col s6{
-    padding-left: 20px;
-    padding-right: 20px;
-}
 .nav-wrapper {
-    background: #a4b8c1;
+    background: #c4a16d;
 }
 
 nav .brand-logo{
@@ -20,12 +27,65 @@ nav .brand-logo{
     font-weight: bold;
 }
 
-h3 {
+
+h3{
+    font-family: 'Montserrat', sans-serif;
     color: #828f99;
+    font-weight: bold;
+}
+.moreInfo{
+  position: absolute;
+  right: 15px;
+  background-color: #78909c;
+}
+
+.moreInfo:hover {
+    background-color:   #e0e0e0;
+}
+
+span{
+    position: sticky;
 }
 
 @media only screen and (max-width: 400px){
 nav .brand-logo{
     font-size: 30px;
+}
+
+.collection-item{
+font-size: 16px;
+margin: auto;
+}
+
+ul {
+    width: 300px;
+}
+}
+
+@media only screen and (min-width: 1224px){
+  #main-container{
+      height: 100%;
+      margin: auto;
+      width: 1224px;
+  }
+
+ .collection-item{
+     line-height: 30px;
+     font-size:25px;
+ }
+
+ .moreInfo{
+     position: absolute;
+     right: 20%;
+ }
+
+ nav .brand-logo{
+     position: absolute;
+     left: 60px;
+ }
+
+.right {
+    position: absolute;
+    right: 60px;
 }
 }
