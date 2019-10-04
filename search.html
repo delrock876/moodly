@@ -57,6 +57,11 @@
   </div>
   
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.js"></script>
+<script>const slideMenu = document.querySelectorAll('.sidenav');
+  M.Sidenav.init(slideMenu, {});
+</script>
   <script>
 
     document.getElementById('submit').addEventListener('click', event => {
@@ -65,14 +70,16 @@
       let song = document.getElementById('yourtitle').value
       let url = `https://quinton-spotify-api.herokuapp.com/search?t=track&q=${song}`
       let url2 = `https://quinton-spotify-api.herokuapp.com/search?t=artist&q=${artist}`
-
+      console.log('pre fetch')
       fetch(url)
         .then(r => r.json())
         .then(info => {
-          
+          console.log('songs return')
           let infoFiltered = info.filter(song => {
+            console.log('songs loop')
             let response = false
             song.artists.forEach(artist1 => {
+              console.log('artist loop')
               if (artist.toLowerCase() === artist1.name.toLowerCase()) {
                 response = true
               }
@@ -94,11 +101,7 @@
     })
 
   </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-<script src="./assets/javascript/app.js"></script>
-<script>const slideMenu = document.querySelectorAll('.sidenav');
-  M.Sidenav.init(slideMenu, {});
-</script>
+
 </body>
 
 </html>
