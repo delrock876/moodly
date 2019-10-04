@@ -70,26 +70,24 @@
       let song = document.getElementById('yourtitle').value
       let url = `https://quinton-spotify-api.herokuapp.com/search?t=track&q=${song}`
       let url2 = `https://quinton-spotify-api.herokuapp.com/search?t=artist&q=${artist}`
-      console.log('pre fetch')
+  
       fetch(url)
         .then(r => r.json())
         .then(info => {
-          console.log('songs return')
           let infoFiltered = info.filter(song => {
-            console.log('songs loop')
             let response = false
             song.artists.forEach(artist1 => {
-              console.log('artist loop')
               if (artist.toLowerCase() === artist1.name.toLowerCase()) {
                 response = true
               }
             })
             return response
           })
-          document.getElementById('albImg').src = `${info[0].album.images[1].url}`
-          document.getElementById('artist').innerHTML = `Artist: ${info[0].artists[0].name}`
-          document.getElementById('title').innerHTML = `Song Title: ${song}`
-          document.getElementById('album').innerHTML = `Album Name: ${info[0].album.name}`
+          console.log(infoFiltered[0])
+          document.getElementById('albImg').src = `${infoFiltered[0].album.images[1].url}`
+          document.getElementById('artist').innerHTML = `Artist: ${infoFiltered[0].artists[0].name}`
+          document.getElementById('title').innerHTML = `Song Title: ${infoFiltered[0].name}`
+          document.getElementById('album').innerHTML = `Album Name: ${infoFiltered[0].album.name}`
         })
         .catch(e => console.log(e))
         // --------
