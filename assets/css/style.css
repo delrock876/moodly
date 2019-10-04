@@ -34,6 +34,10 @@ nav .brand-logo{
     margin-top: 20px;
 }
 
+.heartSpace {
+justify-content: flex-end;
+}
+
 h3{
     font-family: 'Montserrat', sans-serif;
     color: #828f99;
