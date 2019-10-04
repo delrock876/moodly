@@ -34,14 +34,14 @@ document.addEventListener(`click`, event => {
     let url = ` https://ws.audioscrobbler.com/2.0/?method=tag.getTopTracks&tag=${mood}&api_key=94d64342e57a2bf09615e32fc90ca58f&format=json`
 
     //loading animation
-      setTimeout(() => {
-        document.getElementById('main-container').innerHTML = `
+    setTimeout(() => {
+      document.getElementById('main-container').innerHTML = `
         <p id="loading">Generating Your Playlist</p>
          <div class="progress">
             <div class="indeterminate"></div>
             </div>  
         `
-      }, 100)
+    }, 100)
 
     fetch(url)
       .then(r => r.json())
@@ -55,7 +55,7 @@ document.addEventListener(`click`, event => {
         setTimeout(() => {
           document.getElementById('main-container').innerHTML = ``
           renderList()
-        },1200 );
+        }, 1200);
       })
       .catch(e => console.log(e))
   }
@@ -82,7 +82,7 @@ document.addEventListener(`click`, event => {
       .then(data => {
         document.getElementById(`modalInfo`).innerHTML = data.lyrics
         document.getElementById(`showLyric`).addEventListener(`click`, () => {
-        document.getElementById(`modalInfo`).innerHTML = data.lyrics
+          document.getElementById(`modalInfo`).innerHTML = data.lyrics
         })
       })
       .catch(e => console.log(e))
@@ -93,12 +93,19 @@ document.addEventListener(`click`, event => {
         let preview = data[0].preview_url
         // event listener for preview 
         document.getElementById(`showPreview`).addEventListener(`click`, () => {
-        document.getElementById(`modalInfo`).innerHTML = `
+          document.getElementById(`modalInfo`).innerHTML = `
         <div class="video-container">
           <iframe width="853" height="480" src="${preview}" frameborder="0" allowfullscreen></iframe>
         </div>
         `
         })
+
+        // favorite selection
+        document.getElementById('favorite').addEventListener('click', () => {
+          document.getElementById('favorite').innerHTML = `favorite`
+        })
+
+
         // event listner for info card
         document.getElementById(`showInfo`).addEventListener(`click`, () => {
           document.getElementById(`modalInfo`).innerHTML = ` 
@@ -115,9 +122,9 @@ document.addEventListener(`click`, event => {
             </div>
           </div>
         </div>`
+        })
       })
-    }) 
-    .catch(e => console.log(e))
+      .catch(e => console.log(e))
   }
 })
 
