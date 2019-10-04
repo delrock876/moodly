@@ -101,7 +101,6 @@ document.addEventListener(`click`, event => {
         })
         // event listner for info card
         document.getElementById(`showInfo`).addEventListener(`click`, () => {
-          console.log(data)
           document.getElementById(`modalInfo`).innerHTML = ` 
           <div class="row">
             <div class="col s12 m7">
