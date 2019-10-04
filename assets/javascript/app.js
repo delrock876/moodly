@@ -82,7 +82,7 @@ document.addEventListener(`click`, event => {
       .then(r => r.json())
       .then(data => {
 
-         document.getElementById(`showLyric`).addEventListener(`click`, () => {
+         document.getElementById(`showLyric`).addEventListener(`click`, event => {
           document.getElementById(`modalInfo`).innerHTML = data.lyrics
         })
       })
@@ -93,7 +93,7 @@ document.addEventListener(`click`, event => {
       .then(data => {
         let preview = data[0].preview_url
         // event listener for preview 
-        document.getElementById(`showPreview`).addEventListener(`click`, () => {
+        document.getElementById(`showPreview`).addEventListener(`click`, event => {
           document.getElementById(`modalInfo`).innerHTML = `
         <div class="video-container">
           <iframe width="853" height="480" src="${preview}" frameborder="0" allowfullscreen></iframe>
@@ -102,13 +102,13 @@ document.addEventListener(`click`, event => {
         })
 
         // favorite selection
-        document.getElementById('favorite').addEventListener('click', () => {
+        document.getElementById('favorite').addEventListener('click', event => {
           document.getElementById('favorite').innerHTML = `favorite`
         })
 
 
         // event listner for info card
-        document.getElementById(`showInfo`).addEventListener(`click`, () => {
+        document.getElementById(`showInfo`).addEventListener(`click`, event => {
           document.getElementById(`modalInfo`).innerHTML = ` 
           <div class="row">
             <div class="col s12 m7">
