@@ -75,13 +75,14 @@ document.addEventListener(`click`, event => {
     // displays artist & song in modal
     document.getElementById(`artistName`).innerHTML = artistName
     document.getElementById(`trackName`).innerHTML = songTitle
+    document.getElementById(`modalInfo`).innerHTML = ``
 
     // gets the lyrics
     fetch(`https://api.lyrics.ovh/v1/${artistName}/${songTitle}`)
       .then(r => r.json())
       .then(data => {
-        document.getElementById(`modalInfo`).innerHTML = data.lyrics
-        document.getElementById(`showLyric`).addEventListener(`click`, () => {
+
+         document.getElementById(`showLyric`).addEventListener(`click`, () => {
           document.getElementById(`modalInfo`).innerHTML = data.lyrics
         })
       })
