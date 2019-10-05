@@ -90,7 +90,17 @@ document.addEventListener(`click`, event => {
     fetch(`https://quinton-spotify-api.herokuapp.com/search?t=track&q=${songTitle}`)
       .then(r => r.json())
       .then(data => {
-        let preview = data[0].preview_url
+        // this filteres the data we get back from spotify and make sures that the artist name is = artistname `clicked`
+        let intoFiltered = data.filter(artist => {
+         let response = false
+         artist.artists.forEach(data => {
+          if(artistName.toLowerCase() === data.name.toLowerCase()){
+            response = true
+          }
+         })
+         return response
+        })
+        let preview = intoFiltered[0].preview_url
         // event listener for preview 
         document.getElementById(`showPreview`).addEventListener(`click`, () => {
           document.getElementById(`modalInfo`).innerHTML = `
@@ -104,8 +114,6 @@ document.addEventListener(`click`, event => {
         document.getElementById('favorite').addEventListener('click', () => {
           document.getElementById('favorite').innerHTML = `favorite`
         })
-
-
         // event listner for info card
         document.getElementById(`showInfo`).addEventListener(`click`, () => {
           document.getElementById(`modalInfo`).innerHTML = ` 
@@ -113,11 +121,11 @@ document.addEventListener(`click`, event => {
             <div class="col s12 m7">
               <div class="card">
                 <div class="card-image">
-                  <img src=" ${data[0].album.images[0].url}">
+                  <img src=" ${intoFiltered[0].album.images[0].url}">
                 </div>
               <div class="card-content">
-                <p>Album: ${data[0].album.name}</p>
-                <p>Released: ${data[0].album.release_date}</p>
+                <p>Album: ${intoFiltered[0].album.name}</p>
+                <p>Released: ${intoFiltered[0].album.release_date}</p>
               </div>
             </div>
           </div>
