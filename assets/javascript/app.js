@@ -1,6 +1,7 @@
 let mood = ``
 let list = []
 let newList = []
+let favorited = false
 
 //generates a new list of 10 songs from the array of  'list'
 const randomList = _ => {
@@ -133,23 +134,8 @@ document.addEventListener(`click`, event => {
               </div>`
           }
         })
-
-        // favorite selection
-        document.getElementById('favorite').addEventListener('click', event => {
-          if (event.target.textContent === `favorite_border`) {
-            document.getElementById('favorite').innerHTML = `favorite`
-          } else if (event.target.textContent === `favorite`) {
-              document.getElementById('favorite').innerHTML = `favorite_border`
-          }
-          
-          // event.preventDefault()
-          // let song = document.getElementById('trackName').value
-          // localStorage.setItem('song', trackName)
-          // console.log(localStorage.setItem('song', trackName))
-          // document.getElementById('trackName').value = ' '
-          // localStorage.setItem('song', JSON.stringify(song))
-
-        })
+  
+        
       
         // event listener for info card
         document.getElementById(`showInfo`).addEventListener(`click`, () => {
@@ -172,4 +158,21 @@ document.addEventListener(`click`, event => {
       .catch(e => console.log(e))
   }
 })
+// favorite selection
+document.getElementById('favorite').addEventListener('click', event => {
+  if (favorited === false) {
+    favorited = true
+    event.target.innerHTML = `favorite`
+  } else if (favorited === true) {
+    favorited = false
+    event.target.innerHTML = `favorite_border`
+  }
 
+  // event.preventDefault()
+  // let song = document.getElementById('trackName').value
+  // localStorage.setItem('song', trackName)
+  // console.log(localStorage.setItem('song', trackName))
+  // document.getElementById('trackName').value = ' '
+  // localStorage.setItem('song', JSON.stringify(song))
+
+})
