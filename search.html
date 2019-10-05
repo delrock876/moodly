@@ -69,8 +69,6 @@
       let artist = document.getElementById('yourartist').value
       let song = document.getElementById('yourtitle').value
       let url = `https://quinton-spotify-api.herokuapp.com/search?t=track&q=${song}`
-      let url2 = `https://quinton-spotify-api.herokuapp.com/search?t=artist&q=${artist}`
-  
       fetch(url)
         .then(r => r.json())
         .then(info => {
@@ -83,19 +81,12 @@
             })
             return response
           })
-          console.log(infoFiltered[0])
           document.getElementById('albImg').src = `${infoFiltered[0].album.images[1].url}`
           document.getElementById('artist').innerHTML = `Artist: ${infoFiltered[0].artists[0].name}`
           document.getElementById('title').innerHTML = `Song Title: ${infoFiltered[0].name}`
           document.getElementById('album').innerHTML = `Album Name: ${infoFiltered[0].album.name}`
         })
-        .catch(e => console.log(e))
-        // --------
-      // fetch(url2)
-      // .then(r => r.json())
-      // .then(data => {
-      //   console.log(data)
-      // })
+
     })
 
   </script>

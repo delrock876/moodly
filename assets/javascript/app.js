@@ -75,13 +75,14 @@ document.addEventListener(`click`, event => {
     // displays artist & song in modal
     document.getElementById(`artistName`).innerHTML = artistName
     document.getElementById(`trackName`).innerHTML = songTitle
+    document.getElementById(`modalInfo`).innerHTML = ``
 
     // gets the lyrics
     fetch(`https://api.lyrics.ovh/v1/${artistName}/${songTitle}`)
       .then(r => r.json())
       .then(data => {
-        document.getElementById(`modalInfo`).innerHTML = data.lyrics
-        document.getElementById(`showLyric`).addEventListener(`click`, () => {
+
+         document.getElementById(`showLyric`).addEventListener(`click`, () => {
           document.getElementById(`modalInfo`).innerHTML = data.lyrics
         })
       })
@@ -90,7 +91,17 @@ document.addEventListener(`click`, event => {
     fetch(`https://quinton-spotify-api.herokuapp.com/search?t=track&q=${songTitle}`)
       .then(r => r.json())
       .then(data => {
-        let preview = data[0].preview_url
+        // this filteres the data we get back from spotify and make sures that the artist name is = artistname `clicked`
+        let intoFiltered = data.filter(artist => {
+         let response = false
+         artist.artists.forEach(data => {
+          if(artistName.toLowerCase() === data.name.toLowerCase()){
+            response = true
+          }
+         })
+         return response
+        })
+        let preview = intoFiltered[0].preview_url
         // event listener for preview 
         document.getElementById(`showPreview`).addEventListener(`click`, () => {
           document.getElementById(`modalInfo`).innerHTML = `
@@ -111,8 +122,7 @@ document.addEventListener(`click`, event => {
           // localStorage.setItem('song', JSON.stringify(song))
 
         })
-
-
+      
         // event listener for info card
         document.getElementById(`showInfo`).addEventListener(`click`, () => {
           document.getElementById(`modalInfo`).innerHTML = ` 
@@ -120,11 +130,11 @@ document.addEventListener(`click`, event => {
             <div class="col s12 m7">
               <div class="card">
                 <div class="card-image">
-                  <img src=" ${data[0].album.images[0].url}">
+                  <img src=" ${intoFiltered[0].album.images[0].url}">
                 </div>
               <div class="card-content">
-                <p>Album: ${data[0].album.name}</p>
-                <p>Released: ${data[0].album.release_date}</p>
+                <p>Album: ${intoFiltered[0].album.name}</p>
+                <p>Released: ${intoFiltered[0].album.release_date}</p>
               </div>
             </div>
           </div>
