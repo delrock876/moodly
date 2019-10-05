@@ -135,8 +135,13 @@ document.addEventListener(`click`, event => {
         })
 
         // favorite selection
-        document.getElementById('favorite').addEventListener('click', () => {
-          document.getElementById('favorite').innerHTML = `favorite`
+        document.getElementById('favorite').addEventListener('click', event => {
+          if (event.target.textContent === `favorite_border`) {
+            document.getElementById('favorite').innerHTML = `favorite`
+          } else if (event.target.textContent === `favorite`) {
+              document.getElementById('favorite').innerHTML = `favorite_border`
+          }
+          
           // event.preventDefault()
           // let song = document.getElementById('trackName').value
           // localStorage.setItem('song', trackName)
