@@ -31,15 +31,15 @@ let header = () => {
   let title = document.createElement(`div`)
   // title.id = `moodTitle`
   title.className = `row center`
-  if(mood === `sad`){
+  if (mood === `sad`) {
     mood = `gloom`
-  } else if (mood === `hardcore`){
+  } else if (mood === `hardcore`) {
     mood = `aggro`
-  } else if (mood === `indie`){
+  } else if (mood === `indie`) {
     mood = `wild`
-  } else if (mood === `edm`){
+  } else if (mood === `edm`) {
     mood = `amped`
-  } else if(mood === `classical`){
+  } else if (mood === `classical`) {
     mood = `classy`
   }
   title.innerHTML = `
@@ -113,13 +113,13 @@ document.addEventListener(`click`, event => {
       .then(data => {
         // this filteres the data we get back from spotify and make sures that the artist name is = artistname `clicked`
         let infoFiltered = data.filter(artist => {
-         let response = false
-         artist.artists.forEach(data => {
-          if(artistName.toLowerCase() === data.name.toLowerCase()){
-            response = true
-          }
-         })
-         return response
+          let response = false
+          artist.artists.forEach(data => {
+            if (artistName.toLowerCase() === data.name.toLowerCase()) {
+              response = true
+            }
+          })
+          return response
         })
         let preview = infoFiltered[0].preview_url
         // event listener for preview 
@@ -135,15 +135,17 @@ document.addEventListener(`click`, event => {
         })
 
         // favorite selection
-        // document.addEventListener('click', event => {
-        //   if (event.target.className.includes('favorite1')) {
-        //     // let song2 = event.target.dataset.song
-        //     event.target.innerHTML = `favorite`
-        //     for(dataset.songTitle)
-        //     // favList.push(song2)
-        //     // console.log(favList)
-        //     console.log(event.target)
-          } 
+        document.addEventListener('click', event => {
+          if (event.target.className.includes('favorite1')) {
+            // let song2 = event.target.dataset.songTitle
+            event.target.innerHTML = `favorite`
+            // let song = event.target
+            favList.push(songTitle)
+            // for (dataset.songTitle)
+            // favList.push(song2)
+            console.log(favList)
+            console.log(event.target)
+          }
 
           event.preventDefault()
           let song = songTitle
