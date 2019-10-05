@@ -1,6 +1,7 @@
 let mood = ``
 let list = []
 let newList = []
+let favList = []
 let favorited = false
 
 //generates a new list of 10 songs from the array of  'list'
@@ -32,15 +33,15 @@ let header = () => {
   let title = document.createElement(`div`)
   // title.id = `moodTitle`
   title.className = `row center`
-  if(mood === `sad`){
+  if (mood === `sad`) {
     mood = `gloom`
-  } else if (mood === `hardcore`){
+  } else if (mood === `hardcore`) {
     mood = `aggro`
-  } else if (mood === `indie`){
+  } else if (mood === `indie`) {
     mood = `wild`
-  } else if (mood === `edm`){
+  } else if (mood === `edm`) {
     mood = `amped`
-  } else if(mood === `classical`){
+  } else if (mood === `classical`) {
     mood = `classy`
   }
   title.innerHTML = `
@@ -103,7 +104,7 @@ document.addEventListener(`click`, event => {
       .then(r => r.json())
       .then(data => {
 
-         document.getElementById(`showLyric`).addEventListener(`click`, () => {
+        document.getElementById(`showLyric`).addEventListener(`click`, () => {
           document.getElementById(`modalInfo`).innerHTML = data.lyrics
         })
       })
@@ -114,13 +115,13 @@ document.addEventListener(`click`, event => {
       .then(data => {
         // this filteres the data we get back from spotify and make sures that the artist name is = artistname `clicked`
         let infoFiltered = data.filter(artist => {
-         let response = false
-         artist.artists.forEach(data => {
-          if(artistName.toLowerCase() === data.name.toLowerCase()){
-            response = true
-          }
-         })
-         return response
+          let response = false
+          artist.artists.forEach(data => {
+            if (artistName.toLowerCase() === data.name.toLowerCase()) {
+              response = true
+            }
+          })
+          return response
         })
         let preview = infoFiltered[0].preview_url
         // event listener for preview 
@@ -128,15 +129,13 @@ document.addEventListener(`click`, event => {
           if (preview === null) {
             document.getElementById(`modalInfo`).textContent = `Sorry! No Preview Available!`
           } else {
-              document.getElementById(`modalInfo`).innerHTML = `
+            document.getElementById(`modalInfo`).innerHTML = `
               <div class="video-container">
               <iframe width="853" height="480" src="${preview}" frameborder="0" allowfullscreen></iframe>
               </div>`
           }
         })
-  
-        
-      
+
         // event listener for info card
         document.getElementById(`showInfo`).addEventListener(`click`, () => {
           document.getElementById(`modalInfo`).innerHTML = ` 
