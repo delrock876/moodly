@@ -104,11 +104,14 @@ document.addEventListener(`click`, event => {
         let preview = intoFiltered[0].preview_url
         // event listener for preview 
         document.getElementById(`showPreview`).addEventListener(`click`, () => {
-          document.getElementById(`modalInfo`).innerHTML = `
-        <div class="video-container">
-          <iframe width="853" height="480" src="${preview}" frameborder="0" allowfullscreen></iframe>
-        </div>
-        `
+          if (preview === null) {
+            document.getElementById(`modalInfo`).textContent = `Sorry! No Preview Available!`
+          } else {
+              document.getElementById(`modalInfo`).innerHTML = `
+              <div class="video-container">
+              <iframe width="853" height="480" src="${preview}" frameborder="0" allowfullscreen></iframe>
+              </div>`
+          }
         })
 
         // favorite selection
