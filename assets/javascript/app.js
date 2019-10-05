@@ -23,8 +23,28 @@ const renderList = _ => {
            data-artist="${newList[i].name}" 
            data-song="${newList[i].song}">More</a>
           `
+
     document.getElementById(`main-container`).append(trackList)
   }
+}
+let header = () => {
+  let title = document.createElement(`div`)
+  // title.id = `moodTitle`
+  title.className = `row center`
+  if(mood === `sad`){
+    mood = `gloom`
+  } else if (mood === `hardcore`){
+    mood = `aggro`
+  } else if (mood === `indie`){
+    mood = `wild`
+  } else if (mood === `edm`){
+    mood = `amped`
+  } else if(mood === `classical`){
+    mood = `classy`
+  }
+  title.innerHTML = `
+  <h4 id="moodTitle">${mood.toUpperCase()}</h4>`
+  document.getElementById(`main-container`).append(title)
 }
 
 //onclick of moodBtn, a fetch request is made to grab 50 songs relating to that mood
@@ -42,7 +62,6 @@ document.addEventListener(`click`, event => {
             </div>  
         `
     }, 100)
-
     fetch(url)
       .then(r => r.json())
       .then(data => {
@@ -54,6 +73,7 @@ document.addEventListener(`click`, event => {
         //manufactured load time
         setTimeout(() => {
           document.getElementById('main-container').innerHTML = ``
+          header()
           renderList()
         }, 1200);
       })
