@@ -103,10 +103,17 @@ document.addEventListener(`click`, event => {
         // favorite selection
         document.getElementById('favorite').addEventListener('click', () => {
           document.getElementById('favorite').innerHTML = `favorite`
+          // event.preventDefault()
+          // let song = document.getElementById('trackName').value
+          // localStorage.setItem('song', trackName)
+          // console.log(localStorage.setItem('song', trackName))
+          // document.getElementById('trackName').value = ' '
+          // localStorage.setItem('song', JSON.stringify(song))
+
         })
 
 
-        // event listner for info card
+        // event listener for info card
         document.getElementById(`showInfo`).addEventListener(`click`, () => {
           document.getElementById(`modalInfo`).innerHTML = ` 
           <div class="row">
