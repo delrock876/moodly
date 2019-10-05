@@ -1,7 +1,7 @@
 let mood = ``
 let list = []
 let newList = []
-
+let favList = []
 //generates a new list of 10 songs from the array of  'list'
 const randomList = _ => {
   for (let i = 0; i < 10; i++) {
@@ -101,12 +101,19 @@ document.addEventListener(`click`, event => {
         })
 
         // favorite selection
-        document.getElementById('favorite').addEventListener('click', () => {
-          document.getElementById('favorite').innerHTML = `favorite`
-          // event.preventDefault()
-          // let song = document.getElementById('trackName').value
-          // localStorage.setItem('song', trackName)
-          // console.log(localStorage.setItem('song', trackName))
+        document.addEventListener('click', event => {
+          if (event.target.className.includes('favorite1')) {
+            let song2 = event.target.dataset.song
+            event.target.innerHTML = `favorite`
+            favList.push(song2)
+            console.log(favList)
+            console.log(event.target)
+          }
+
+          event.preventDefault()
+          let song = songTitle
+          localStorage.setItem('song', song)
+          console.log(localStorage.song)
           // document.getElementById('trackName').value = ' '
           // localStorage.setItem('song', JSON.stringify(song))
 
