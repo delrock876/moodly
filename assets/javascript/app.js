@@ -2,6 +2,8 @@ let mood = ``
 let list = []
 let newList = []
 let favList = []
+let favorited = false
+
 //generates a new list of 10 songs from the array of  'list'
 const randomList = _ => {
   for (let i = 0; i < 10; i++) {
@@ -134,28 +136,6 @@ document.addEventListener(`click`, event => {
           }
         })
 
-        // favorite selection
-        document.addEventListener('click', event => {
-          if (event.target.className.includes('favorite1')) {
-            // let song2 = event.target.dataset.songTitle
-            event.target.innerHTML = `favorite`
-            // let song = event.target
-            favList.push(songTitle)
-            // for (dataset.songTitle)
-            // favList.push(song2)
-            console.log(favList)
-            console.log(event.target)
-          }
-
-          event.preventDefault()
-          let song = songTitle
-          localStorage.setItem('song', song)
-          console.log(localStorage.song)
-          // document.getElementById('trackName').value = ' '
-          // localStorage.setItem('song', JSON.stringify(song))
-
-        })
-
         // event listener for info card
         document.getElementById(`showInfo`).addEventListener(`click`, () => {
           document.getElementById(`modalInfo`).innerHTML = ` 
@@ -177,4 +157,21 @@ document.addEventListener(`click`, event => {
       .catch(e => console.log(e))
   }
 })
+// favorite selection
+document.getElementById('favorite').addEventListener('click', event => {
+  if (favorited === false) {
+    favorited = true
+    event.target.innerHTML = `favorite`
+  } else if (favorited === true) {
+    favorited = false
+    event.target.innerHTML = `favorite_border`
+  }
 
+  // event.preventDefault()
+  // let song = document.getElementById('trackName').value
+  // localStorage.setItem('song', trackName)
+  // console.log(localStorage.setItem('song', trackName))
+  // document.getElementById('trackName').value = ' '
+  // localStorage.setItem('song', JSON.stringify(song))
+
+})
