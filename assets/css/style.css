@@ -57,6 +57,13 @@ span{
     position: sticky;
 }
 
+#moodTitle {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    margin-top: 0px;
+    color: #c4a16d;
+}
+
 @media only screen and (max-width: 400px){
 nav .brand-logo{
     font-size: 30px;
@@ -99,3 +106,4 @@ ul {
     right: 60px;
 }
 }
+

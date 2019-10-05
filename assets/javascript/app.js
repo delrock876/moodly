@@ -23,8 +23,28 @@ const renderList = _ => {
            data-artist="${newList[i].name}" 
            data-song="${newList[i].song}">More</a>
           `
+
     document.getElementById(`main-container`).append(trackList)
   }
+}
+let header = () => {
+  let title = document.createElement(`div`)
+  // title.id = `moodTitle`
+  title.className = `row center`
+  if(mood === `sad`){
+    mood = `gloom`
+  } else if (mood === `hardcore`){
+    mood = `aggro`
+  } else if (mood === `indie`){
+    mood = `wild`
+  } else if (mood === `edm`){
+    mood = `amped`
+  } else if(mood === `classical`){
+    mood = `classy`
+  }
+  title.innerHTML = `
+  <h4 id="moodTitle">${mood.toUpperCase()}</h4>`
+  document.getElementById(`main-container`).append(title)
 }
 
 //onclick of moodBtn, a fetch request is made to grab 50 songs relating to that mood
@@ -42,7 +62,6 @@ document.addEventListener(`click`, event => {
             </div>  
         `
     }, 100)
-
     fetch(url)
       .then(r => r.json())
       .then(data => {
@@ -54,6 +73,7 @@ document.addEventListener(`click`, event => {
         //manufactured load time
         setTimeout(() => {
           document.getElementById('main-container').innerHTML = ``
+          header()
           renderList()
         }, 1200);
       })
@@ -92,16 +112,16 @@ document.addEventListener(`click`, event => {
       .then(r => r.json())
       .then(data => {
         // this filteres the data we get back from spotify and make sures that the artist name is = artistname `clicked`
-        let intoFiltered = data.filter(artist => {
-          let response = false
-          artist.artists.forEach(data => {
-            if (artistName.toLowerCase() === data.name.toLowerCase()) {
-              response = true
-            }
-          })
-          return response
+        let infoFiltered = data.filter(artist => {
+         let response = false
+         artist.artists.forEach(data => {
+          if(artistName.toLowerCase() === data.name.toLowerCase()){
+            response = true
+          }
+         })
+         return response
         })
-        let preview = intoFiltered[0].preview_url
+        let preview = infoFiltered[0].preview_url
         // event listener for preview 
         document.getElementById(`showPreview`).addEventListener(`click`, () => {
           if (preview === null) {
@@ -141,11 +161,11 @@ document.addEventListener(`click`, event => {
             <div class="col s12 m7">
               <div class="card">
                 <div class="card-image">
-                  <img src=" ${intoFiltered[0].album.images[0].url}">
+                  <img src=" ${infoFiltered[0].album.images[0].url}">
                 </div>
               <div class="card-content">
-                <p>Album: ${intoFiltered[0].album.name}</p>
-                <p>Released: ${intoFiltered[0].album.release_date}</p>
+                <p>Album: ${infoFiltered[0].album.name}</p>
+                <p>Released: ${infoFiltered[0].album.release_date}</p>
               </div>
             </div>
           </div>
