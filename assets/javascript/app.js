@@ -112,7 +112,7 @@ document.addEventListener(`click`, event => {
       .then(r => r.json())
       .then(data => {
         // this filteres the data we get back from spotify and make sures that the artist name is = artistname `clicked`
-        let intoFiltered = data.filter(artist => {
+        let infoFiltered = data.filter(artist => {
          let response = false
          artist.artists.forEach(data => {
           if(artistName.toLowerCase() === data.name.toLowerCase()){
@@ -121,7 +121,7 @@ document.addEventListener(`click`, event => {
          })
          return response
         })
-        let preview = intoFiltered[0].preview_url
+        let preview = infoFiltered[0].preview_url
         // event listener for preview 
         document.getElementById(`showPreview`).addEventListener(`click`, () => {
           if (preview === null) {
@@ -153,11 +153,11 @@ document.addEventListener(`click`, event => {
             <div class="col s12 m7">
               <div class="card">
                 <div class="card-image">
-                  <img src=" ${intoFiltered[0].album.images[0].url}">
+                  <img src=" ${infoFiltered[0].album.images[0].url}">
                 </div>
               <div class="card-content">
-                <p>Album: ${intoFiltered[0].album.name}</p>
-                <p>Released: ${intoFiltered[0].album.release_date}</p>
+                <p>Album: ${infoFiltered[0].album.name}</p>
+                <p>Released: ${infoFiltered[0].album.release_date}</p>
               </div>
             </div>
           </div>
