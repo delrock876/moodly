@@ -1,4 +1,5 @@
 {
   "editor.fastScrollSensitivity": 4,
-  "markdown-preview-enhanced.scrollSync": false
+  "markdown-preview-enhanced.scrollSync": false,
+  "editor.mouseWheelScrollSensitivity": 0.5
 }
