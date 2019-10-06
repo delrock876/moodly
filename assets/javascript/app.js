@@ -17,11 +17,11 @@ const renderList = _ => {
   for (let i = 0; i < newList.length; i++) {
     let trackList = document.createElement(`ul`)
     trackList.innerHTML = `
-          <a href="#info" class="collection-item modal-trigger">
+          <a href="#info" class="collection-item">
           Artist: <span>${newList[i].name}</span>
           <br>
           Song: <span>${newList[i].song}</span></a>
-          <a class= "btn-small moreInfo waves-effect waves-light"
+          <a data-target="info" class= "btn-small modal-trigger moreInfo waves-effect waves-light"
            data-artist="${newList[i].name}" 
            data-song="${newList[i].song}">More</a>
           `
@@ -84,12 +84,12 @@ document.addEventListener(`click`, event => {
 })
 
 
-// Initialize Modal
-M.Modal.init(document.querySelectorAll(`.modal`), {})
 
 // event listener for getting lyrics once you click "INFO" button
 document.addEventListener(`click`, event => {
   if (event.target.className.includes(`btn-small`)) {
+    // Initialize Modal
+    M.Modal.init(document.querySelectorAll(`.modal`), {})
     // opens modal
     M.Modal.getInstance(document.getElementById(`info`)).open()
     let artistName = event.target.dataset.artist
