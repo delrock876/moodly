@@ -104,7 +104,7 @@ document.addEventListener(`click`, event => {
       .then(r => r.json())
       .then(data => {
 
-        document.getElementById(`showLyric`).addEventListener(`click`, () => {
+         document.getElementById(`showLyric`).addEventListener(`click`, event => {
           document.getElementById(`modalInfo`).innerHTML = data.lyrics
         })
       })
@@ -125,7 +125,8 @@ document.addEventListener(`click`, event => {
         })
         let preview = infoFiltered[0].preview_url
         // event listener for preview 
-        document.getElementById(`showPreview`).addEventListener(`click`, () => {
+
+        document.getElementById(`showPreview`).addEventListener(`click`, event => {
           if (preview === null) {
             document.getElementById(`modalInfo`).textContent = `Sorry! No Preview Available!`
           } else {
@@ -137,7 +138,7 @@ document.addEventListener(`click`, event => {
         })
 
         // event listener for info card
-        document.getElementById(`showInfo`).addEventListener(`click`, () => {
+        document.getElementById(`showInfo`).addEventListener(`click`, event => {
           document.getElementById(`modalInfo`).innerHTML = ` 
           <div class="row">
             <div class="col s12 m7">
