@@ -10,8 +10,6 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/style.css">
-
-
 </head>
 
 <body>
@@ -52,35 +50,19 @@
   </form>
 
   <div id="genInfo" class="search">
-    <!-- <img id='albImg' src="" alt="">
+    <img id='albImg' src="" alt="">
     <p id="title"></p>
     <p id="artist"></p>
-    <p id="album"></p> -->
+    <p id="album"></p>
   </div>
   
 </div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.js"></script>
 <script>const slideMenu = document.querySelectorAll('.sidenav');
   M.Sidenav.init(slideMenu, {});
-  </script>
+</script>
   <script>
-    const renderList = (someArr, div) => {
-      console.log(someArr)
-        for (let i = 0; i < someArr.length; i++) {
-          let trackList = document.createElement(`ul`)
-          let theArtist = someArr[i].artists.filter(artist => artist.name.toLowerCase() === document.getElementById('yourartist').value.toLowerCase())[0].name
-          trackList.innerHTML = `
-          <a href="#info" class="collection-item modal-trigger">
-          Artist: <span>${theArtist}</span>
-          <br>
-          Song: <span>${someArr[i].name}</span></a>
-          <a class= "btn-small moreInfo waves-effect waves-light"
-           data-artist="${theArtist}" 
-           data-song="${someArr[i].name}">More</a>
-          `
-          document.getElementById(`genInfo`).append(trackList)
-        }
-      }
 
     document.getElementById('submit').addEventListener('click', event => {
       event.preventDefault()
@@ -88,30 +70,27 @@
       let song = document.getElementById('yourtitle').value
       let url = `https://quinton-spotify-api.herokuapp.com/search?t=track&q=${song}`
       fetch(url)
-      .then(r => r.json())
-      .then(info => {
-        let infoFiltered = info.filter(song => {
-          let response = false
-          song.artists.forEach(artist1 => {
-            if (artist.toLowerCase() === artist1.name.toLowerCase()) {
-              response = true
-            }
+        .then(r => r.json())
+        .then(info => {
+          let infoFiltered = info.filter(song => {
+            let response = false
+            song.artists.forEach(artist1 => {
+              if (artist.toLowerCase() === artist1.name.toLowerCase()) {
+                response = true
+              }
+            })
+            return response
           })
-          return response
+          document.getElementById('albImg').src = `${infoFiltered[0].album.images[1].url}`
+          document.getElementById('artist').innerHTML = `Artist: ${infoFiltered[0].artists[0].name}`
+          document.getElementById('title').innerHTML = `Song Title: ${infoFiltered[0].name}`
+          document.getElementById('album').innerHTML = `Album Name: ${infoFiltered[0].album.name}`
         })
-        renderList(infoFiltered)
-        // console.log(infoFiltered)
-        // document.getElementById('artist').innerHTML = `Artist: ${infoFiltered[0].artists[0].name}`
-        // document.getElementById('albImg').src = `${infoFiltered[0].album.images[1].url}`
-        // document.getElementById('title').innerHTML = `Song Title: ${infoFiltered[0].name}`
-        // document.getElementById('album').innerHTML = `Album Name: ${infoFiltered[0].album.name}`
-      })
-      
-    })
-    
-    </script>
 
-<!-- <script src="assets/javascript/app.js"></script> -->
+    })
+
+  </script>
+
 </body>
 
 </html>
