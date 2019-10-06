@@ -1,4 +1,4 @@
 {
   "editor.fastScrollSensitivity": 0.009,
-  "editor.mouseWheelScrollSensitivity": 5
+  "editor.mouseWheelScrollSensitivity": 0.009
 }
