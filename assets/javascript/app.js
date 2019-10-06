@@ -25,10 +25,10 @@ const renderList = _ => {
            data-artist="${newList[i].name}" 
            data-song="${newList[i].song}">More</a>
           `
-
     document.getElementById(`main-container`).append(trackList)
   }
 }
+
 let header = () => {
   let title = document.createElement(`div`)
   // title.id = `moodTitle`

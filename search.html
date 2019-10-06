@@ -6,63 +6,81 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Search</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:100&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:100&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+
 </head>
 
 <body>
-<nav>
-  <div class="nav-wrapper">
-    <div class="container">
-      <a href="#" class="sidenav-trigger" data-target="slide-out"><i class="material-icons">menu</i></a>
-      <a href="index.html" class="brand-logo">Moodly</a>
-      <ul class="right hide-on-med-and-down">
-        <li class="#"><a href="search.html"><i class="material-icons">search</i></a></li>
-        <li><a href="#"><i class="material-icons">favorite</i></a></li>
-        <li><a href="#"><i class="material-icons">refresh</i></a></li>
+  <nav>
+    <div class="nav-wrapper">
+      <div class="container">
+        <a href="#" class="sidenav-trigger" data-target="slide-out"><i class="material-icons">menu</i></a>
+        <a href="index.html" class="brand-logo">Moodly</a>
+        <ul class="right hide-on-med-and-down">
+          <li class="#"><a href="search.html"><i class="material-icons">search</i></a></li>
+          <li><a href="#"><i class="material-icons">favorite</i></a></li>
+          <li><a href="#"><i class="material-icons">refresh</i></a></li>
 
-      </ul>
+        </ul>
+      </div>
     </div>
-  </div>
-</nav>
-<ul class="sidenav" id="slide-out">
-  <li><a href="search.html">
-      <p>Search</p>
-    </a></li>
-  <li><a href="#">
-      <p>Favorites</p>
-    </a></li>
-  <li><a href="#">
-      <p>Refresh</p>
-    </a></li>
-</ul>
+  </nav>
+  <ul class="sidenav" id="slide-out">
+    <li><a href="search.html">
+        <p>Search</p>
+      </a></li>
+    <li><a href="#">
+        <p>Favorites</p>
+      </a></li>
+    <li><a href="#">
+        <p>Refresh</p>
+      </a></li>
+  </ul>
 
-<div class="container" style="margin:25px">
-  <h3>Search for Song</h3>
-  <form>
-    Artist: <br>
-    <input type="text" id="yourartist"><br>
-    Title: <br>
-    <input id="yourtitle" type="text">
-    <a id="submit"class="btn-small  waves-effect waves-light">Submit</a>
-  </form>
+  <div class="container" style="margin:25px">
+    <h3>Search for Song</h3>
+    <form>
+      Artist: <br>
+      <input type="text" id="yourartist"><br>
+      Title: <br>
+      <input id="yourtitle" type="text">
+      <a id="submit" class="btn-small  waves-effect waves-light">Submit</a>
+    </form>
 
-  <div id="genInfo" class="search">
-    <img id='albImg' src="" alt="">
+    <div id="genInfo" class="search">
+      <!-- <img id='albImg' src="" alt="">
     <p id="title"></p>
     <p id="artist"></p>
-    <p id="album"></p>
-  </div>
-  
-</div>
+    <p id="album"></p> -->
+    </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.js"></script>
-<script>const slideMenu = document.querySelectorAll('.sidenav');
-  M.Sidenav.init(slideMenu, {});
-</script>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.js"></script>
+  <script>const slideMenu = document.querySelectorAll('.sidenav');
+    M.Sidenav.init(slideMenu, {});
+  </script>
   <script>
+    const renderList = (someArr, div) => {
+      console.log(someArr)
+      for (let i = 0; i < someArr.length; i++) {
+        let trackList = document.createElement(`ul`)
+        let theArtist = someArr[i].artists.filter(artist => artist.name.toLowerCase() === document.getElementById('yourartist').value.toLowerCase())[0].name
+        trackList.innerHTML = `
+          <a href="#info" class="collection-item modal-trigger">
+          Artist: <span>${theArtist}</span>
+          <br>
+          Song: <span>${someArr[i].name}</span></a>
+          <a class= "btn-small moreInfo waves-effect waves-light"
+           data-artist="${theArtist}" 
+           data-song="${someArr[i].name}">More</a>
+          `
+        document.getElementById(`genInfo`).append(trackList)
+      }
+    }
 
     document.getElementById('submit').addEventListener('click', event => {
       event.preventDefault()
@@ -81,16 +99,19 @@
             })
             return response
           })
-          document.getElementById('albImg').src = `${infoFiltered[0].album.images[1].url}`
-          document.getElementById('artist').innerHTML = `Artist: ${infoFiltered[0].artists[0].name}`
-          document.getElementById('title').innerHTML = `Song Title: ${infoFiltered[0].name}`
-          document.getElementById('album').innerHTML = `Album Name: ${infoFiltered[0].album.name}`
+          renderList(infoFiltered)
+          // console.log(infoFiltered)
+          // document.getElementById('artist').innerHTML = `Artist: ${infoFiltered[0].artists[0].name}`
+          // document.getElementById('albImg').src = `${infoFiltered[0].album.images[1].url}`
+          // document.getElementById('title').innerHTML = `Song Title: ${infoFiltered[0].name}`
+          // document.getElementById('album').innerHTML = `Album Name: ${infoFiltered[0].album.name}`
         })
 
     })
 
   </script>
 
+  <!-- <script src="assets/javascript/app.js"></script> -->
 </body>
 
 </html>
