@@ -33,7 +33,7 @@
     <li><a href="search.html">
         <p>Search</p>
       </a></li>
-    <li><a href="favorites.html>
+    <li><a href="favorites.html">
         <p>Favorites</p>
       </a></li>
     <li><a href="#">
@@ -52,10 +52,7 @@
     </form>
 
     <div id="genInfo" class="search">
-      <img id='albImg' src="" alt="">
-    <p id="title"></p>
-    <p id="artist"></p>
-    <p id="album"></p>
+
     </div>
 
   </div>
@@ -76,7 +73,9 @@
           Song: <span>${someArr[i].name}</span></a>
           <a class= "btn-small moreInfo waves-effect waves-light"
            data-artist="${theArtist}" 
-           data-song="${someArr[i].name}">More</a>
+           data-song="${someArr[i].name}"
+           data-album="${someArr[i].album.name}"
+           data-image="${someArr[i].album.images[1].url}">More</a>
           `
         document.getElementById(`genInfo`).append(trackList)
       }
@@ -99,25 +98,25 @@
             })
             return response
           })
+          console.log(infoFiltered)
           renderList(infoFiltered)
-          // console.log(infoFiltered)
-          // document.getElementById('artist').innerHTML = `Artist: ${infoFiltered[0].artists[0].name}`
-          // document.getElementById('albImg').src = `${infoFiltered[0].album.images[1].url}`
-          // document.getElementById('title').innerHTML = `Song Title: ${infoFiltered[0].name}`
-          // document.getElementById('album').innerHTML = `Album Name: ${infoFiltered[0].album.name}`
         })
 
     })
 
-    // document.addEventListener('click', event =>{
-    //   if(event.target.className.includes('moreInfo')){
-    //       document.getElementById('artist').innerHTML = `Artist: ${infoFiltered[0].artists[0].name}`
-    //       document.getElementById('albImg').src = `${infoFiltered[0].album.images[1].url}`
-    //       document.getElementById('title').innerHTML = `Song Title: ${infoFiltered[0].name}`
-    //       document.getElementById('album').innerHTML = `Album Name: ${infoFiltered[0].album.name}`
-
-    //   }
-    // })
+    document.addEventListener('click', event => {
+      if (event.target.className.includes('moreInfo')) {
+        document.getElementById('genInfo').innerHTML = ` 
+        <img id='albImg' src="" alt="">
+        <p id="title"></p>
+        <p id="artist"></p>
+        <p id="album"></p>`
+        document.getElementById('artist').innerHTML = `Artist: ${event.target.dataset.artist}`
+        document.getElementById('albImg').src = `${event.target.dataset.image}`
+        document.getElementById('title').innerHTML = `Song Title: ${event.target.dataset.song}`
+        document.getElementById('album').innerHTML = `Album Name: ${event.target.dataset.album}`
+      }
+    })
 
   </script>
 

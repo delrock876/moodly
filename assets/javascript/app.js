@@ -101,7 +101,7 @@ document.addEventListener(`click`, event => {
     document.getElementById(`trackName`).innerHTML = songTitle
     document.getElementById(`modalInfo`).innerHTML = ``
     favorited = false
-if (favorited === false){
+    if (favorited === false){
   document.getElementById('favorite').innerHTML = 'favorite_border'
 }
     // gets the lyrics
