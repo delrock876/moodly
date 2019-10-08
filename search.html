@@ -52,10 +52,10 @@
     </form>
 
     <div id="genInfo" class="search">
-      <!-- <img id='albImg' src="" alt="">
+      <img id='albImg' src="" alt="">
     <p id="title"></p>
     <p id="artist"></p>
-    <p id="album"></p> -->
+    <p id="album"></p>
     </div>
 
   </div>
@@ -64,8 +64,8 @@
     M.Sidenav.init(slideMenu, {});
   </script>
   <script>
-    const renderList = (someArr, div) => {
-      console.log(someArr)
+    const renderList = (someArr) => {
+      document.getElementById('genInfo').innerHTML = ' '
       for (let i = 0; i < someArr.length; i++) {
         let trackList = document.createElement(`ul`)
         let theArtist = someArr[i].artists.filter(artist => artist.name.toLowerCase() === document.getElementById('yourartist').value.toLowerCase())[0].name
@@ -108,6 +108,16 @@
         })
 
     })
+
+    // document.addEventListener('click', event =>{
+    //   if(event.target.className.includes('moreInfo')){
+    //       document.getElementById('artist').innerHTML = `Artist: ${infoFiltered[0].artists[0].name}`
+    //       document.getElementById('albImg').src = `${infoFiltered[0].album.images[1].url}`
+    //       document.getElementById('title').innerHTML = `Song Title: ${infoFiltered[0].name}`
+    //       document.getElementById('album').innerHTML = `Album Name: ${infoFiltered[0].album.name}`
+
+    //   }
+    // })
 
   </script>
 
