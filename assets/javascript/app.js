@@ -100,7 +100,10 @@ document.addEventListener(`click`, event => {
     document.getElementById(`artistName`).innerHTML = artistName
     document.getElementById(`trackName`).innerHTML = songTitle
     document.getElementById(`modalInfo`).innerHTML = ``
-
+    favorited = false
+    if (favorited === false){
+  document.getElementById('favorite').innerHTML = 'favorite_border'
+}
     // gets the lyrics
     fetch(`https://api.lyrics.ovh/v1/${artistName}/${songTitle}`)
       .then(r => r.json())
@@ -174,6 +177,7 @@ document.getElementById('favorite').addEventListener('click', event => {
     favorited = false
     event.target.innerHTML = `favorite_border`
   }
+})
   
   localStorage.setItem(`favoriteSong`, faveArr)
   
@@ -184,4 +188,3 @@ document.getElementById('favorite').addEventListener('click', event => {
   // document.getElementById('trackName').value = ' '
   // localStorage.setItem('song', JSON.stringify(song))
 
-})
