@@ -8,8 +8,10 @@ let favorited = false
 const randomList = _ => {
   for (let i = 0; i < 10; i++) {
     let newsong = list[Math.floor(Math.random() * list.length)]
+    if(newList.indexOf(newsong) === -1)
     newList.push(newsong)
   }
+  console.log(newList)
 }
 
 //renders 'newList' array of songs on page with dataset values
