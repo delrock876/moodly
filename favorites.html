@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Favorites</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:100&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+
+</head>
+
+<body>
+  <nav>
+    <div class="nav-wrapper">
+      <div class="container">
+        <a href="#" class="sidenav-trigger" data-target="slide-out"><i class="material-icons">menu</i></a>
+        <a href="index.html" class="brand-logo">Moodly</a>
+        <ul class="right hide-on-med-and-down">
+          <li class="#"><a href="search.html"><i class="material-icons">search</i></a></li>
+          <li><a href="#"><i class="material-icons">favorite</i></a></li>
+          <li><a href="#"><i class="material-icons">refresh</i></a></li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <ul class="sidenav" id="slide-out">
+    <li><a href="search.html">
+        <p>Search</p>
+      </a></li>
+    <li><a href="favorites.html">
+        <p>Favorites</p>
+      </a></li>
+    <li><a href="#">
+        <p>Refresh</p>
+      </a></li>
+  </ul>
+
+  <div class="container" style="margin:25px">
+    <h3>Favorites Playlist</h3>
+    
+<script>
+  let favesArr = []
+  let likedSong = ``
+  let liked = false
+  
+  document.getElementById('favorite').addEventListener('click', event => {
+      if (liked === false) {
+        liked = true
+        event.target.innerHTML = `favorite`
+        let likedSong = document.getElementById(`trackName`).textContent
+        favesArr.push(likedSong)
+        console.log(faveArr)
+      }
+  })
+
+  localStorage.getItem(`favoriteSong`, favesArr)
+
+  // const songList = (favesArr, div) => {
+  //   console.log(favesArr)
+  //   for (let i = 0; i < favesArr.length; i++) {
+  //     let trackList = document.createElement(`ul`)
+  //     let theArtist = someArr[i].artists.filter(artist => artist.name.toLowerCase() === document.getSelection('faveArr').textContent.toLowerCase())[0].name
+  //     trackList.innerHTML = `
+  //         <a href="#info" class="collection-item modal-trigger">
+  //         Artist: <span>${theArtist}</span>
+  //         <br>
+  //         Song: <span>${someArr[i].name}</span></a>
+  //         <a class= "btn-small moreInfo waves-effect waves-light"
+  //          data-artist="${theArtist}" 
+  //          data-song="${someArr[i].name}">More</a>
+  //         `
+  //     document.getElementById(``).append(trackList)
+  //   }
+  // }
+
+  // document.getElementById('submit').addEventListener('click', event => {
+  //   event.preventDefault()
+  //   let artist = document.getElementById('yourartist').value
+  //   let song = document.getElementById('yourtitle').value
+  //   let url = `https://quinton-spotify-api.herokuapp.com/search?t=track&q=${song}`
+  //   fetch(url)
+  //     .then(r => r.json())
+  //     .then(info => {
+  //       let infoFiltered = info.filter(song => {
+  //         let response = false
+  //         song.artists.forEach(artist1 => {
+  //           if (artist.toLowerCase() === artist1.name.toLowerCase()) {
+  //             response = true
+  //           }
+  //         })
+  //         return response
+  //       })
+        
+  //     })
+
+  // })
+</script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="./assets/javascript/app.js"></script>
+<script>const slideMenu = document.querySelectorAll('.sidenav');
+      M.Sidenav.init(slideMenu, {});
+
+
+</body>
+
+</html>

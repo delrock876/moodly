@@ -8,8 +8,10 @@ let favorited = false
 const randomList = _ => {
   for (let i = 0; i < 10; i++) {
     let newsong = list[Math.floor(Math.random() * list.length)]
+    if(newList.indexOf(newsong) === -1)
     newList.push(newsong)
   }
+  console.log(newList)
 }
 
 //renders 'newList' array of songs on page with dataset values
@@ -17,11 +19,11 @@ const renderList = _ => {
   for (let i = 0; i < newList.length; i++) {
     let trackList = document.createElement(`ul`)
     trackList.innerHTML = `
-          <a href="#info" class="collection-item modal-trigger">
+          <a href="#info" class="collection-item">
           Artist: <span>${newList[i].name}</span>
           <br>
           Song: <span>${newList[i].song}</span></a>
-          <a class= "btn-small moreInfo waves-effect waves-light"
+          <a data-target="info" class= "btn-small modal-trigger moreInfo waves-effect waves-light"
            data-artist="${newList[i].name}" 
            data-song="${newList[i].song}">More</a>
           `
@@ -84,12 +86,12 @@ document.addEventListener(`click`, event => {
 })
 
 
-// Initialize Modal
-M.Modal.init(document.querySelectorAll(`.modal`), {})
 
 // event listener for getting lyrics once you click "INFO" button
 document.addEventListener(`click`, event => {
   if (event.target.className.includes(`btn-small`)) {
+    // Initialize Modal
+    M.Modal.init(document.querySelectorAll(`.modal`), {})
     // opens modal
     M.Modal.getInstance(document.getElementById(`info`)).open()
     let artistName = event.target.dataset.artist
@@ -162,15 +164,23 @@ if (favorited === false){
   }
 })
 // favorite selection
+let faveArr = []
+let faveSong = ``
 document.getElementById('favorite').addEventListener('click', event => {
   if (favorited === false) {
     favorited = true
     event.target.innerHTML = `favorite`
+    let faveSong = document.getElementById(`trackName`).textContent
+    faveArr.push(faveSong)
+    console.log(faveArr)
   } else if (favorited === true) {
     favorited = false
     event.target.innerHTML = `favorite_border`
   }
 })
+  
+  localStorage.setItem(`favoriteSong`, faveArr)
+  
   // event.preventDefault()
   // let song = document.getElementById('trackName').value
   // localStorage.setItem('song', trackName)
