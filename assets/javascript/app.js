@@ -6,10 +6,14 @@ let favorited = false
 
 //generates a new list of 10 songs from the array of  'list'
 const randomList = _ => {
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 11; i++) {
     let newsong = list[Math.floor(Math.random() * list.length)]
-    if(newList.indexOf(newsong) === -1)
+    if(newList.indexOf(newsong) === -1){
     newList.push(newsong)
+    }
+    if(newList.length === 10){
+      break
+    }
   }
   console.log(newList)
 }
@@ -131,7 +135,7 @@ document.addEventListener(`click`, event => {
         let preview = infoFiltered[0].preview_url
         // event listener for preview 
 
-        document.getElementById(`showPreview`).addEventListener(`click`, event => {
+        document.getElementById(`showPreview`).addEventListener(`click`, () => {
           if (preview === null) {
             document.getElementById(`modalInfo`).textContent = `Sorry! No Preview Available!`
           } else {
