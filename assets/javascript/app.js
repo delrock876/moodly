@@ -6,7 +6,7 @@ let favorited = false
 
 //generates a new list of 10 songs from the array of  'list'
 const randomList = _ => {
-  for (let i = 0; i < 11; i++) {
+  for (let i = 0; i < 20; i++) {
     let newsong = list[Math.floor(Math.random() * list.length)]
     if(newList.indexOf(newsong) === -1){
     newList.push(newsong)
