@@ -43,41 +43,42 @@
 
   <div class="container" style="margin:25px">
     <h3>Favorites Playlist</h3>
-    
+    <div id="faveList">
+
+
+    </div>
 <script>
-  let favesArr = []
-  let likedSong = ``
-  let liked = false
   
-  document.getElementById('favorite').addEventListener('click', event => {
-      if (liked === false) {
-        liked = true
-        event.target.innerHTML = `favorite`
-        let likedSong = document.getElementById(`trackName`).textContent
-        favesArr.push(likedSong)
-        console.log(faveArr)
-      }
-  })
+  let favoriteArr =  JSON.parse(localStorage.getItem(`favoriteSong`)) 
+  console.log(favoriteArr)
 
-  localStorage.getItem(`favoriteSong`, favesArr)
 
-  // const songList = (favesArr, div) => {
-  //   console.log(favesArr)
-  //   for (let i = 0; i < favesArr.length; i++) {
-  //     let trackList = document.createElement(`ul`)
-  //     let theArtist = someArr[i].artists.filter(artist => artist.name.toLowerCase() === document.getSelection('faveArr').textContent.toLowerCase())[0].name
-  //     trackList.innerHTML = `
-  //         <a href="#info" class="collection-item modal-trigger">
-  //         Artist: <span>${theArtist}</span>
-  //         <br>
-  //         Song: <span>${someArr[i].name}</span></a>
-  //         <a class= "btn-small moreInfo waves-effect waves-light"
-  //          data-artist="${theArtist}" 
-  //          data-song="${someArr[i].name}">More</a>
-  //         `
-  //     document.getElementById(``).append(trackList)
-  //   }
-  // }
+
+  const songList = () => {
+    console.log(favoriteArr)
+    for (let i = 0; i < favoriteArr.length; i++) {
+      
+      let trackList = document.createElement(`ul`)
+      let artist = favoriteArr[i].artist
+      let song = favoriteArr[i].track
+      console.log(artist)
+      console.log(song)
+      console.log(i)
+      trackList.innerHTML = `
+          <a href="#info" class="collection-item modal-trigger">
+          Artist: <span>${artist}</span>
+          <br> 
+          Song: <span>${song}</span></a>
+          <a class= "btn-small moreInfo waves-effect waves-light"
+           data-artist="${artist}" 
+           data-song="${song}">More</a>
+          `
+      document.getElementById(`faveList`).append(trackList)
+        
+    }
+  }
+
+  songList()
 
   // document.getElementById('submit').addEventListener('click', event => {
   //   event.preventDefault()
@@ -104,7 +105,7 @@
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-<script src="./assets/javascript/app.js"></script>
+<!-- s -->
 <script>const slideMenu = document.querySelectorAll('.sidenav');
       M.Sidenav.init(slideMenu, {});
 </script>

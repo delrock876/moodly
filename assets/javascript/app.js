@@ -8,8 +8,8 @@ let favorited = false
 const randomList = _ => {
   for (let i = 0; i < 10; i++) {
     let newsong = list[Math.floor(Math.random() * list.length)]
-    if(newList.indexOf(newsong) === -1)
-    newList.push(newsong)
+    if (newList.indexOf(newsong) === -1)
+      newList.push(newsong)
   }
   console.log(newList)
 }
@@ -101,15 +101,15 @@ document.addEventListener(`click`, event => {
     document.getElementById(`trackName`).innerHTML = songTitle
     document.getElementById(`modalInfo`).innerHTML = ``
     favorited = false
-    if (favorited === false){
-  document.getElementById('favorite').innerHTML = 'favorite_border'
-}
+    if (favorited === false) {
+      document.getElementById('favorite').innerHTML = 'favorite_border'
+    }
     // gets the lyrics
     fetch(`https://api.lyrics.ovh/v1/${artistName}/${songTitle}`)
       .then(r => r.json())
       .then(data => {
 
-         document.getElementById(`showLyric`).addEventListener(`click`, event => {
+        document.getElementById(`showLyric`).addEventListener(`click`, event => {
           document.getElementById(`modalInfo`).innerHTML = data.lyrics
         })
       })
@@ -165,22 +165,34 @@ document.addEventListener(`click`, event => {
 })
 // favorite selection
 let faveArr = []
-let faveSong = ``
+// let faveSong = {
+//   artist: "",
+//   track: ""
+// }
 document.getElementById('favorite').addEventListener('click', event => {
+  let faveArr = JSON.parse(localStorage.getItem('favoriteSong'))
   if (favorited === false) {
     favorited = true
     event.target.innerHTML = `favorite`
-    let faveSong = document.getElementById(`trackName`).textContent
+    let item = document.getElementById('trackName').textContent
+    let faveSong = {
+      artist: document.getElementById('artistName').textContent,
+      track: document.getElementById(`trackName`).textContent
+    }
+
     faveArr.push(faveSong)
-    console.log(faveArr)
+
+    localStorage.setItem(`favoriteSong`, JSON.stringify(faveArr))
+
   } else if (favorited === true) {
     favorited = false
     event.target.innerHTML = `favorite_border`
   }
 })
-  
-  localStorage.setItem(`favoriteSong`, faveArr)
-  
+
+// localStorage.setItem(`favoriteSong`, JSON.stringify(faveArr))
+// console.log(faveArr)
+
   // event.preventDefault()
   // let song = document.getElementById('trackName').value
   // localStorage.setItem('song', trackName)
