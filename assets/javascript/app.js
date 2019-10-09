@@ -90,8 +90,6 @@ document.addEventListener(`click`, event => {
   }
 })
 
-
-
 // event listener for getting lyrics once you click "INFO" button
 document.addEventListener(`click`, event => {
   if (event.target.className.includes(`btn-small`)) {
@@ -170,10 +168,7 @@ document.addEventListener(`click`, event => {
 })
 // favorite selection
 let faveArr = []
-// let faveSong = {
-//   artist: "",
-//   track: ""
-// }
+
 document.getElementById('favorite').addEventListener('click', event => {
   let faveArr = localStorage.getItem('favoriteSong') ? JSON.parse(localStorage.getItem('favoriteSong')) : []
   if (favorited === false) {
@@ -194,14 +189,4 @@ document.getElementById('favorite').addEventListener('click', event => {
     event.target.innerHTML = `favorite_border`
   }
 })
-
-// localStorage.setItem(`favoriteSong`, JSON.stringify(faveArr))
-// console.log(faveArr)
-
-  // event.preventDefault()
-  // let song = document.getElementById('trackName').value
-  // localStorage.setItem('song', trackName)
-  // console.log(localStorage.setItem('song', trackName))
-  // document.getElementById('trackName').value = ' '
-  // localStorage.setItem('song', JSON.stringify(song))
 
