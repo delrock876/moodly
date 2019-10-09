@@ -53,7 +53,7 @@ h4{
     width: 280px;
     margin-left: 15px;
     padding-top: 20px;
-    padding-bottom: 15px;
+    /* padding-bottom: 15px; */
 }
 
 .container{
@@ -76,7 +76,7 @@ span{
 #moodTitle {
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
-    margin-top: 0px;
+    margin: auto;
     color: #c4a16d;
 }
 
@@ -87,10 +87,14 @@ span{
     font-size: 24px;
 }
 
-@media only screen and (max-width: 400px){
+@media only screen and (max-width: 699px){
 nav .brand-logo{
     font-size: 40px;
     padding-top: 4px;
+}
+
+#main-container{
+    padding-top: 20px;
 }
 
 .collection-item{
@@ -100,14 +104,15 @@ margin: auto;
 
 ul {
     width: 280px;
+    margin-top: 0px;
 }
 }
 
-@media only screen and (min-width: 1224px){
+@media only screen and (min-width: 1004px){
   #main-container{
       height: 100%;
       margin: auto;
-      width: 1224px;
+      width: 1004px;
   }
 
  .collection-item{
