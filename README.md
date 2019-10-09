@@ -8,9 +8,9 @@ What is Moodly?
     4) Users can also use our search functionality to expand the music discovery experience
 
 Our Team:
-  Sabrina Rocha - MVP Lead Developer
-  Cyd Castillo - Start Front End Developer
-  Travis Houston - Rad Full Stack Developer
+  Sabrina Rocha - MVP Lead Developer and Fearless Leader
+  Cyd Castillo - Super Star Brand Style Guide Visionary
+  Travis Houston - Rad Full Stack Developer Extraordinaire
   Kevin Young - Master of Git and Scrums
 
 Technologies Used:
