@@ -175,7 +175,7 @@ let faveArr = []
 //   track: ""
 // }
 document.getElementById('favorite').addEventListener('click', event => {
-  let faveArr = JSON.parse(localStorage.getItem('favoriteSong'))
+  let faveArr = localStorage.getItem('favoriteSong') ? JSON.parse(localStorage.getItem('favoriteSong')) : []
   if (favorited === false) {
     favorited = true
     event.target.innerHTML = `favorite`
