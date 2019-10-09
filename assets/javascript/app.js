@@ -64,7 +64,7 @@ document.addEventListener(`click`, event => {
     //loading animation
     setTimeout(() => {
       document.getElementById('main-container').innerHTML = `
-        <p id="loading">Generating Your Playlist</p>
+        <p class="center" id="loading">Generating Your Playlist</p>
          <div class="progress" style="background-color: #828f99">
             <div class="indeterminate" style="background-color: #c4a16d"></div>
             </div>  
