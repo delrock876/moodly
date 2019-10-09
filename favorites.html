@@ -10,8 +10,6 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:100&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./assets/css/style.css">
-
-
 </head>
 
 <body>
@@ -52,18 +50,13 @@
   let favoriteArr =  JSON.parse(localStorage.getItem(`favoriteSong`)) 
   console.log(favoriteArr)
 
-
-
   const songList = () => {
-    console.log(favoriteArr)
+
     for (let i = 0; i < favoriteArr.length; i++) {
       
       let trackList = document.createElement(`ul`)
       let artist = favoriteArr[i].artist
       let song = favoriteArr[i].track
-      console.log(artist)
-      console.log(song)
-      console.log(i)
       trackList.innerHTML = `
           <a href="#info" class="collection-item modal-trigger">
           Artist: <span>${artist}</span>
@@ -74,7 +67,7 @@
            data-song="${song}">More</a>
           `
       document.getElementById(`faveList`).append(trackList)
-        
+
     }
   }
   songList()
