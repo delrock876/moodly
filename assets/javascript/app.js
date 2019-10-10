@@ -8,7 +8,7 @@ let favorited = false
 const randomList = _ => {
   for (let i = 0; i < 20; i++) {
     let newsong = list[Math.floor(Math.random() * list.length)]
-
+    // prevents duplicate list entries
     if(newList.indexOf(newsong) === -1){
     newList.push(newsong)
     }
@@ -16,7 +16,6 @@ const randomList = _ => {
       break
     }
   }
-  console.log(newList)
 }
 
 //renders 'newList' array of songs on page with dataset values
@@ -35,10 +34,9 @@ const renderList = _ => {
     document.getElementById(`main-container`).append(trackList)
   }
 }
-
+// header to identify mood selected - change display to proper mood
 let header = () => {
   let title = document.createElement(`div`)
-  // title.id = `moodTitle`
   title.className = `row center`
   if (mood === `sad`) {
     mood = `gloom`
@@ -111,10 +109,9 @@ document.addEventListener(`click`, event => {
     fetch(`https://api.lyrics.ovh/v1/${artistName}/${songTitle}`)
       .then(r => r.json())
       .then(data => {
-
+        // show lyrics on click event of "lyrics"
         document.getElementById(`showLyric`).addEventListener(`click`, event => {
           document.getElementById(`modalInfo`).innerHTML = data.lyrics
-          console.log(data.lyrics)
           if (document.getElementById(`modalInfo`).innerHTML === `undefined`) {
             document.getElementById(`modalInfo`).innerHTML = `Sorry! Lyrics are not available!`
           }
@@ -125,7 +122,7 @@ document.addEventListener(`click`, event => {
     fetch(`https://quinton-spotify-api.herokuapp.com/search?t=track&q=${songTitle}`)
       .then(r => r.json())
       .then(data => {
-        // this filteres the data we get back from spotify and make sures that the artist name is = artistname `clicked`
+        // this filters the data we get back from spotify and make sures that the artist name is = artistname `clicked`
         let infoFiltered = data.filter(artist => {
           let response = false
           artist.artists.forEach(data => {
@@ -135,9 +132,9 @@ document.addEventListener(`click`, event => {
           })
           return response
         })
+
         let preview = infoFiltered[0].preview_url
         // event listener for preview 
-
         document.getElementById(`showPreview`).addEventListener(`click`, () => {
           if (preview === null) {
             document.getElementById(`modalInfo`).textContent = `Sorry! No Preview Available!`
@@ -172,9 +169,10 @@ document.addEventListener(`click`, event => {
 })
 // favorite selection
 let faveArr = []
-
+// on click event to push trackname to faveArr and save into local storage
 document.getElementById('favorite').addEventListener('click', event => {
   let faveArr = localStorage.getItem('favoriteSong') ? JSON.parse(localStorage.getItem('favoriteSong')) : []
+  // conditional to change border_favorite to favorite 
   if (favorited === false) {
     favorited = true
     event.target.innerHTML = `favorite`
