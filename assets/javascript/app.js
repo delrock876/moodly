@@ -114,6 +114,10 @@ document.addEventListener(`click`, event => {
 
         document.getElementById(`showLyric`).addEventListener(`click`, event => {
           document.getElementById(`modalInfo`).innerHTML = data.lyrics
+          console.log(data.lyrics)
+          if (document.getElementById(`modalInfo`).innerHTML === `undefined`) {
+            document.getElementById(`modalInfo`).innerHTML = `Sorry! Lyrics are not available!`
+          }
         })
       })
       .catch(e => console.log(e))
