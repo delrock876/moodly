@@ -13,6 +13,7 @@
 </head>
 
 <body>
+  <!-- navbar -->
   <nav>
     <div class="nav-wrapper">
       <div class="container">
@@ -27,33 +28,31 @@
       </div>
     </div>
   </nav>
+  <!-- sidenav -->
   <ul class="sidenav" id="slide-out">
-    <li><a href="search.html">
-        <p>Search</p>
-      </a></li>
-    <li><a href="favorites.html">
-        <p>Favorites</p>
-      </a></li>
-    <li><a href="#">
-        <p>Refresh</p>
-      </a></li>
+    <li>
+      <a href="search.html"><p>Search</p></a>
+    </li>
+    <li>
+      <a href="favorites.html"> <p>Favorites</p></a>
+    </li>
+    <li>
+      <a href="#"><p>Refresh</p></a>
+    </li>
   </ul>
 
   <div class="container">
     <h4>Favorites Playlist</h4>
-    <div id="faveList">
+    <div id="faveList"></div>
+  </div>
 
-
-    </div>
 <script>
-  
+  // parse localstorage to get favorite song and = new favorite array
   let favoriteArr =  JSON.parse(localStorage.getItem(`favoriteSong`)) 
-  console.log(favoriteArr)
-
+// create new song list
   const songList = () => {
-
+    // loop to create favorite list elements with artist and track info
     for (let i = 0; i < favoriteArr.length; i++) {
-      
       let trackList = document.createElement(`ul`)
       let artist = favoriteArr[i].artist
       let song = favoriteArr[i].track
@@ -67,7 +66,6 @@
            data-song="${song}">More</a>
           `
       document.getElementById(`faveList`).append(trackList)
-
     }
   }
   songList()

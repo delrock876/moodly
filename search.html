@@ -13,6 +13,7 @@
 </head>
 
 <body>
+  <!-- navbar -->
   <nav>
     <div class="nav-wrapper">
       <div class="container">
@@ -27,20 +28,22 @@
       </div>
     </div>
   </nav>
+  <!-- sidenav -->
   <ul class="sidenav" id="slide-out">
-    <li><a href="search.html">
-        <p>Search</p>
-      </a></li>
-    <li><a href="favorites.html">
-        <p>Favorites</p>
-      </a></li>
-    <li><a href="#">
-        <p>Refresh</p>
-      </a></li>
+    <li>
+      <a href="search.html"><p>Search</p></a>
+    </li>
+    <li>
+      <a href="favorites.html"><p>Favorites</p></a>
+    </li>
+    <li>
+      <a href="#"><p>Refresh</p></a>
+    </li>
   </ul>
 
+  <!-- search text inputs -->
   <div class="container">
-    <h4>Search for Song</h4>
+    <h4>Search for a Song</h4>
     <form>
       Artist: <br>
       <input type="text" id="yourartist"><br>
@@ -49,16 +52,18 @@
       <a id="submit" class="btn-small  waves-effect waves-light">Submit</a>
     </form>
 
-    <div id="genInfo" class="search">
-
-    </div>
+    <div id="genInfo" class="search"></div>
 
   </div>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.js"></script>
-  <script>const slideMenu = document.querySelectorAll('.sidenav');
+
+  <script>
+  const slideMenu = document.querySelectorAll('.sidenav');
     M.Sidenav.init(slideMenu, {});
   </script>
   <script>
+    // render list and create elements to display search results
     const renderList = (someArr) => {
       document.getElementById('genInfo').innerHTML = ' '
       for (let i = 0; i < someArr.length; i++) {
@@ -78,7 +83,7 @@
         document.getElementById(`genInfo`).append(trackList)
       }
     }
-
+    // click event on submit button - filter through api data for accurate data output, then render list
     document.getElementById('submit').addEventListener('click', event => {
       event.preventDefault()
       let artist = document.getElementById('yourartist').value
@@ -101,6 +106,7 @@
 
     })
 
+    // show track information on click of more button
     document.addEventListener('click', event => {
       if (event.target.className.includes('moreInfo')) {
         document.getElementById('genInfo').innerHTML = ` 
