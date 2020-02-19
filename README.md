@@ -14,6 +14,7 @@ Moodly is an app for music exploration based on the user's current mood.
     3. Users can like songs to make a favorites list
     4. Users can also use our search functionality to expand the music discovery experience
 
+<img src="/assets/images/moodly.PNG" height="300" width="300"><img src="/assets/images/moodly2.PNG" height="300" width="300"><img src="/assets/images/moodly3.PNG" height="300" width="300">
   
 
 ## Our Team:
